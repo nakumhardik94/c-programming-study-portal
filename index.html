@@ -44,6 +44,11 @@
       padding: 0;
     }
 
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
     /* ─── REFERENCE SITE BACKGROUND: SMOOTH TEAL GRADIENT ─── */
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -1396,29 +1401,414 @@
       color: var(--cyan-accent);
     }
 
-    /* ─── 6. RESPONSIVE DESIGN ─── */
+    /* ─── 6. COMPREHENSIVE RESPONSIVE DESIGN (Mobile & Tablet) ─── */
     @media (max-width: 1100px) {
       .units-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
       }
     }
 
     @media (max-width: 768px) {
+      /* Full Width Side Panel on Mobile & Tablet */
+      .unit-side-panel {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 100vw !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      /* Disable edge resizer handle on touch/mobile to prevent swipe conflicts */
+      .panel-resizer {
+        display: none !important;
+      }
+
+      /* Top Header */
+      .header-container {
+        padding: 0 1rem;
+        height: 56px;
+      }
+
+      .brand-logo {
+        font-size: 1.02rem;
+        letter-spacing: 0.08em;
+        gap: 0.4rem;
+      }
+
+      .brand-logo span.code-tag {
+        font-size: 0.65rem;
+        padding: 0.1rem 0.35rem;
+      }
+
+      nav.nav-links {
+        gap: 0.95rem;
+      }
+
+      .nav-item {
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0;
+      }
+
+      /* Single-Column Grid on Mobile */
       .units-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.15rem;
       }
-      .header-container {
-        padding: 0 1.25rem;
+
+      .portal-main-container {
+        padding: 0 1rem;
+        margin: 1rem auto 3rem;
       }
-      nav.nav-links {
+
+      /* Hero Banner */
+      .hero-banner-strip {
+        padding: 1.75rem 1rem 1rem;
+      }
+
+      .hero-banner-title {
+        font-size: 1.35rem;
+        letter-spacing: 0.05em;
+        line-height: 1.3;
+      }
+
+      .hero-badges-row {
+        gap: 0.5rem;
+      }
+
+      .hero-badge-pill {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.65rem;
+      }
+
+      /* Unit Cards */
+      .unit-card-box {
+        padding: 1.6rem 1.25rem;
+        min-height: 90px;
+      }
+
+      .unit-card-title {
+        font-size: 1rem;
+      }
+
+      /* Side Panel Header */
+      .panel-header {
+        padding: 0.85rem 1rem 0.65rem 1rem;
+      }
+
+      .panel-top-row {
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .panel-back-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+      }
+
+      .theme-switcher-label {
+        display: none;
+      }
+
+      .theme-toggle-btn {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.72rem;
+      }
+
+      .panel-unit-title {
+        font-size: 1.05rem;
+        margin: 0.2rem 0 0.65rem 0;
+        line-height: 1.35;
+      }
+
+      /* 3-Column Navigation Tabs (Theory, Practical, Code) */
+      .panel-nav-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.25rem;
+        margin-top: 0.4rem;
+        border-bottom: 1px solid var(--panel-border);
+      }
+
+      .panel-nav-tab {
+        justify-content: center;
+        padding: 0.55rem 0.2rem;
+        font-size: 0.74rem;
+        letter-spacing: 0.04em;
+        text-align: center;
+        gap: 0.3rem;
+      }
+
+      .panel-nav-tab .tab-icon {
+        font-size: 0.82rem;
+      }
+
+      /* Panel Body Scrolling & Padding */
+      .panel-scroll-body {
+        padding: 1rem 1rem 3.5rem 1rem;
+      }
+
+      /* Questions Accordion */
+      .qa-card {
+        padding: 0.75rem 0;
+      }
+
+      .qa-btn {
+        gap: 0.6rem;
+        padding: 0.2rem 0;
+      }
+
+      .qa-left {
+        gap: 0.45rem;
+      }
+
+      .qa-num-badge {
+        font-size: 0.8rem;
+      }
+
+      .qa-text {
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .qa-answer-drawer {
+        padding: 0.6rem 0 0.25rem 0.35rem;
+      }
+
+      .qa-answer-box {
+        padding: 0.25rem 0 0.25rem 0.75rem;
+        font-size: 0.86rem;
+        line-height: 1.65;
+        border-left-width: 2px;
+      }
+
+      /* Clear Code Writeup in Theory */
+      .code-writeup {
+        margin: 0.75rem 0;
+        border-radius: 6px;
+      }
+
+      .code-writeup-bar {
+        padding: 0.3rem 0.65rem;
+      }
+
+      .code-writeup-badge {
+        font-size: 0.68rem;
+      }
+
+      .code-writeup-copy {
+        padding: 0.15rem 0.5rem;
+        font-size: 0.7rem;
+      }
+
+      .code-writeup-content {
+        font-size: 0.8rem;
+        line-height: 1.55;
+      }
+
+      .code-writeup-gutter {
+        min-width: 30px;
+        padding: 0.6rem 0.4rem;
+        font-size: 0.78rem;
+      }
+
+      .code-writeup-pre {
+        padding: 0.6rem 0.65rem;
+        font-size: 0.8rem;
+      }
+
+      /* Visual Studio Code Editor (Practicals / Code) */
+      .vscode-window {
+        border-radius: 6px;
+      }
+
+      .vscode-title-bar {
+        height: 34px;
+        padding: 0 0.5rem;
+      }
+
+      .vscode-dots {
+        display: none;
+      }
+
+      .vscode-tab {
+        padding: 0 0.5rem;
+        font-size: 0.74rem;
+        gap: 0.35rem;
+      }
+
+      .vscode-lang-pill {
+        display: none;
+      }
+
+      .btn-vscode-copy {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.7rem;
+      }
+
+      .vscode-body {
+        font-size: 0.8rem;
+        line-height: 1.55;
+      }
+
+      .vscode-gutter {
+        min-width: 32px;
+        padding: 0.6rem 0.4rem;
+        font-size: 0.78rem;
+      }
+
+      .vscode-code-content {
+        padding: 0.6rem 0.65rem;
+      }
+
+      /* Program Card Header */
+      .prog-header {
+        padding: 0.75rem 0.9rem;
+        gap: 0.5rem;
+      }
+
+      .prog-title-grp {
+        gap: 0.45rem;
+      }
+
+      .prog-num-pill {
+        font-size: 0.68rem;
+        padding: 0.1rem 0.35rem;
+      }
+
+      .prog-name {
+        font-size: 0.86rem;
+      }
+
+      .prog-cat-tag {
+        font-size: 0.68rem;
+        padding: 0.1rem 0.4rem;
+      }
+
+      .prog-drawer {
+        padding: 0 0.75rem 0.75rem 0.75rem;
+      }
+
+      /* Practicals list */
+      .practicals-panel {
+        padding: 1rem 1.15rem;
+      }
+
+      .practicals-panel h4 {
+        font-size: 0.88rem;
+      }
+
+      .practicals-list {
+        padding-left: 1rem;
+        font-size: 0.84rem;
+      }
+
+      /* Mid-Term Examination Paper Box */
+      .midterm-banner-box {
+        padding: 1.15rem 1rem;
+      }
+
+      .midterm-heading {
+        font-size: 1.05rem;
+      }
+
+      .midterm-desc {
+        font-size: 0.85rem;
+      }
+
+      .midterm-waiting-box {
+        padding: 1.5rem 1rem;
+      }
+
+      .midterm-waiting-icon {
+        font-size: 1.8rem;
+      }
+
+      .midterm-waiting-title {
+        font-size: 0.96rem;
+      }
+
+      .midterm-waiting-text {
+        font-size: 0.84rem;
+      }
+
+      /* Modals on Mobile */
+      .reference-modal-backdrop {
+        padding: 0.75rem;
+      }
+
+      .reference-modal-header {
+        padding: 0.85rem 1rem;
+      }
+
+      .reference-modal-header h3 {
+        font-size: 0.95rem;
+      }
+
+      .reference-modal-body {
+        padding: 1rem;
+      }
+
+      /* Footer */
+      footer.reference-footer {
+        padding: 2rem 1rem;
+      }
+
+      .footer-action-links {
         gap: 1.25rem;
       }
-      .unit-options-bar {
-        flex-direction: column;
+    }
+
+    /* Extra Small Phone Screens (<= 480px) */
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0 0.75rem;
       }
-      .unit-opt-btn {
-        width: 100%;
+
+      .brand-logo {
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
+      }
+
+      .brand-logo span.code-tag {
+        display: none;
+      }
+
+      nav.nav-links {
+        gap: 0.65rem;
+      }
+
+      .nav-item {
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+      }
+
+      .hero-banner-title {
+        font-size: 1.18rem;
+      }
+
+      .panel-header {
+        padding: 0.75rem 0.75rem 0.5rem 0.75rem;
+      }
+
+      .panel-scroll-body {
+        padding: 0.85rem 0.75rem 3.5rem 0.75rem;
+      }
+
+      .panel-unit-title {
+        font-size: 0.98rem;
+      }
+
+      .panel-nav-tab {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.15rem;
+      }
+
+      .panel-nav-tab .tab-icon {
+        display: none;
       }
     }
   </style>
@@ -1625,6 +2015,24 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeSidePanel();
       });
+
+      // Deep Linking via URL Parameters (e.g. ?open=1&section=theory&theme=light)
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const openParam = params.get("open") || params.get("unit");
+        const sectionParam = params.get("section") || 'theory';
+        const themeParam = params.get("theme");
+
+        if (openParam) {
+          const unitId = openParam === "midterm" ? "midterm" : (parseInt(openParam, 10) || openParam);
+          openUnitSidePanel(unitId, sectionParam);
+          if (themeParam) {
+            setPanelTheme(themeParam);
+          }
+        }
+      } catch (err) {
+        console.error("Deep link parse error:", err);
+      }
     }
 
     if (document.readyState === "loading") {
@@ -1643,7 +2051,15 @@
       const panel = document.getElementById("unit-side-panel");
       if (!resizer || !panel) return;
 
+      // Handle window resize to clear custom desktop width on mobile
+      window.addEventListener("resize", () => {
+        if (window.innerWidth <= 768 && panel) {
+          panel.style.width = "";
+        }
+      });
+
       resizer.addEventListener("mousedown", (e) => {
+        if (window.innerWidth <= 768) return;
         isResizing = true;
         resizeStartX = e.clientX;
         resizeStartWidth = panel.offsetWidth;
@@ -1654,7 +2070,7 @@
       });
 
       document.addEventListener("mousemove", (e) => {
-        if (!isResizing) return;
+        if (!isResizing || window.innerWidth <= 768) return;
         const deltaX = resizeStartX - e.clientX;
         const newWidth = Math.min(Math.max(resizeStartWidth + deltaX, 380), window.innerWidth * 0.96);
         panel.style.width = newWidth + "px";
@@ -1666,30 +2082,6 @@
           resizer.classList.remove("is-resizing");
           document.body.style.cursor = "";
           document.body.style.userSelect = "";
-        }
-      });
-
-      // Touch events for mobile/tablet drag resizing
-      resizer.addEventListener("touchstart", (e) => {
-        if (e.touches.length === 1) {
-          isResizing = true;
-          resizeStartX = e.touches[0].clientX;
-          resizeStartWidth = panel.offsetWidth;
-          resizer.classList.add("is-resizing");
-        }
-      }, { passive: true });
-
-      document.addEventListener("touchmove", (e) => {
-        if (!isResizing || e.touches.length !== 1) return;
-        const deltaX = resizeStartX - e.touches[0].clientX;
-        const newWidth = Math.min(Math.max(resizeStartWidth + deltaX, 320), window.innerWidth * 0.98);
-        panel.style.width = newWidth + "px";
-      }, { passive: true });
-
-      document.addEventListener("touchend", () => {
-        if (isResizing) {
-          isResizing = false;
-          resizer.classList.remove("is-resizing");
         }
       });
     }
@@ -1800,19 +2192,20 @@
 
     // ─── Open Unit in Side Panel ───
     function openUnitSidePanel(unitId, section = 'theory') {
-      currentOpenUnitId = unitId;
+      const normalizedId = (String(unitId).startsWith("unit") || unitId === "midterm") ? String(unitId) : `unit${unitId}`;
+      currentOpenUnitId = normalizedId;
       currentPanelSection = section;
 
       const panel = document.getElementById("unit-side-panel");
       const overlay = document.getElementById("panel-overlay");
       const tabsBar = panel ? panel.querySelector(".panel-nav-tabs") : null;
-      const unit = ALL_UNITS.find(u => u.id === unitId);
+      const unit = ALL_UNITS.find(u => u.id === normalizedId);
       if (!panel || !unit) return;
 
       if (tabsBar) tabsBar.style.display = "flex";
 
       document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));
-      const activeCard = document.getElementById(`card-${unitId}`);
+      const activeCard = document.getElementById(`card-${normalizedId}`) || document.getElementById(`card-${unitId}`);
       if (activeCard) activeCard.classList.add("active-open");
 
       const titleEl = document.getElementById("panel-unit-title");
@@ -1828,7 +2221,12 @@
     function closeSidePanel() {
       const panel = document.getElementById("unit-side-panel");
       const overlay = document.getElementById("panel-overlay");
-      if (panel) panel.classList.remove("open");
+      if (panel) {
+        panel.classList.remove("open");
+        if (window.innerWidth <= 768) {
+          panel.style.width = "";
+        }
+      }
       if (overlay) overlay.classList.remove("open");
 
       document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));

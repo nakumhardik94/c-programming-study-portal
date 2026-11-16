@@ -1,7 +1,22 @@
 # CAP6105: Programming & Problem-Solving Using C
 
 > **University Examination Study Portal & Interactive Program Library**  
-> Developed & Curated by **Hardik Nakum**
+> Developed & Curated by **Hardik Nakum**  
+> 🌐 **Live Website**: [https://nakumhardik94.github.io/c-programming-study-portal/](https://nakumhardik94.github.io/c-programming-study-portal/)
+
+---
+
+## 📸 Previews & Screenshots
+
+### Desktop View
+| Dashboard & Unit Overview | Interactive Side Panel Reader |
+| :---: | :---: |
+| ![Desktop Dashboard](screenshots/desktop-dashboard.png) | ![Desktop Unit Reader](screenshots/desktop-unit-reader.png) |
+
+### Mobile Responsive View
+| Mobile Home Screen | Theory & Syntax Highlighter | VS Code Program Drawer |
+| :---: | :---: | :---: |
+| <img src="screenshots/mobile-home.png" width="260" alt="Mobile Home" /> | <img src="screenshots/mobile-side-panel-theory.png" width="260" alt="Mobile Theory" /> | <img src="screenshots/mobile-side-panel-code.png" width="260" alt="Mobile Code" /> |
 
 ---
 
@@ -15,7 +30,13 @@ The portal covers the entire university syllabus across **15 Units**, pairing th
 
 ## ✨ Features
 
-- **15 Syllabus Units & Mid-Term Exam Section**:
+- **📱 100% Mobile & Tablet Responsive**:
+  - Automatically adapts from a 3-column desktop grid to single-column phone layout.
+  - Full-screen native reading experience on mobile with clean touch-friendly navigation.
+  - Zero horizontal overflow on devices down to 320px.
+  - Quick `← Back to Units` button for easy one-handed navigation on phones.
+
+- **📚 15 Syllabus Units & Mid-Term Exam Section**:
   - Unit 1: Algorithm & Flow Charts
   - Unit 2: Keywords, Variables & Data Types
   - Unit 3: Fundamentals of C
@@ -33,27 +54,27 @@ The portal covers the entire university syllabus across **15 Units**, pairing th
   - Unit 15: Dynamic Memory Allocation
   - Dedicated **Mid-Term Examination Paper** Section
 
-- **695+ Exam-Oriented Theory Q&As**:
+- **💡 695+ Exam-Oriented Theory Q&As**:
   - Organized directly by unit without difficulty fragmentation.
   - Single-question accordion: clicking any question expands its answer while cleanly folding others.
-  - Direct, clear code writeups with line numbers and one-click code copy.
+  - Clear, readable code writeups with line numbers and one-click code copy.
 
-- **Resizable Side Panel Reader**:
-  - Interactive drag handle allowing users to resize the reading panel width as needed.
+- **🎛️ Resizable Side Panel Reader**:
+  - Interactive drag handle allowing desktop users to adjust reading panel width smoothly.
   - Header Navigation Bar style tabs: `📘 THEORY`, `📐 PRACTICAL`, and `💻 CODE`.
 
-- **Dual Reading Themes (White / Black)**:
+- **🌓 Dual Reading Themes (White / Black)**:
   - Default clean white background with high-contrast text designed for long study sessions.
   - Instant live toggle between **White** and **Black** reading modes with zero page reload.
 
-- **30 Practical Lab Problems & 65 Executable Programs**:
-  - Syntax-highlighted C code with line numbers, gutter, and copy functionality.
+- **💻 30 Practical Lab Problems & 65 Executable Programs**:
+  - Visual Studio Code Dark+ style syntax-highlighted C code with line numbers, gutter, and copy functionality.
 
 ---
 
 ## 🚀 Live Demo & Usage
 
-- **Live URL**: Hosted on GitHub Pages: `https://nakumhardik94.github.io/c-programming-study-portal/`
+- **Live URL**: Hosted on GitHub Pages: [https://nakumhardik94.github.io/c-programming-study-portal/](https://nakumhardik94.github.io/c-programming-study-portal/)
 - **Run Locally**: Clone or download this repository, then double-click `index.html` to open it in any web browser.
 
 ---
