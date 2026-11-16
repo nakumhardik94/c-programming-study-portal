@@ -36,7 +36,12 @@ The portal covers the entire university syllabus across **15 Units**, pairing th
   - Zero horizontal overflow on devices down to 320px.
   - Quick `← Back to Units` button for easy one-handed navigation on phones.
 
-- **📚 15 Syllabus Units & Mid-Term Exam Section**:
+- **📚 15 Syllabus Units & Solved Mid-Term Exam Section**:
+  - **Manipal University Jaipur Mid-Term Examination Paper (Jul-Nov 2026, 30 Marks)**:
+    - Official question paper photo embedded with full-screen zoom and download links.
+    - **Section A (8 Marks):** Semicolon semantics, Declaration vs. Initialization, Output Prediction traces (Loops & Operators).
+    - **Section B (15 Marks):** Böhm-Jacopini control structures & flowchart representations, Entry vs. Exit-controlled loops analysis (why `do-while` is ideal for menus), Data types & type conversion hierarchy.
+    - **Section C (7 Marks):** Complete interactive banking program (`switch-case`, `do-while`, balance validation with ₹10,000 initial balance, and dry run).
   - Unit 1: Algorithm & Flow Charts
   - Unit 2: Keywords, Variables & Data Types
   - Unit 3: Fundamentals of C

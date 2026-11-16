@@ -815,106 +815,314 @@
     .midterm-container {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-      padding: 0.5rem 0;
+      gap: 1.25rem;
+      padding: 0.25rem 0 2.5rem 0;
     }
 
     .midterm-banner-box {
       background: var(--card-bg);
       border: 1px solid var(--panel-border);
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1.35rem 1.5rem;
     }
 
-    .midterm-tag {
+    .midterm-univ-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      color: var(--panel-text);
       text-transform: uppercase;
-      color: var(--ans-accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .midterm-heading {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--panel-text);
-      margin: 0 0 0.5rem 0;
-    }
-
-    .midterm-desc {
-      font-size: 0.92rem;
-      color: var(--panel-text-muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .midterm-waiting-box {
-      background: var(--btn-bg);
-      border: 1px dashed var(--ans-accent);
-      border-radius: 8px;
-      padding: 2rem 1.5rem;
-      text-align: center;
+      margin-bottom: 0.35rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
 
-    .midterm-waiting-icon {
-      font-size: 2.2rem;
-    }
-
-    .midterm-waiting-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--panel-text);
-      margin: 0;
-    }
-
-    .midterm-waiting-text {
-      font-size: 0.9rem;
+    .midterm-univ-sub {
+      font-size: 0.82rem;
       color: var(--panel-text-muted);
-      max-width: 580px;
-      line-height: 1.6;
-      margin: 0;
+      line-height: 1.5;
+      margin-bottom: 0.85rem;
     }
 
-    .midterm-sections-preview {
+    .midterm-meta-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.85rem;
-    }
-
-    @media (max-width: 680px) {
-      .midterm-sections-preview {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .midterm-preview-card {
-      background: var(--card-bg);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.65rem;
+      background: var(--btn-bg);
       border: 1px solid var(--panel-border);
       border-radius: 6px;
-      padding: 1rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.85rem;
     }
 
-    .midterm-preview-card h5 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--ans-accent);
-      text-transform: uppercase;
-      margin: 0 0 0.35rem 0;
+    .midterm-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
     }
 
-    .midterm-preview-card p {
-      font-size: 0.84rem;
+    .midterm-meta-label {
+      font-size: 0.68rem;
+      font-weight: 700;
       color: var(--panel-text-muted);
-      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .midterm-meta-val {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--ans-accent);
+    }
+
+    .midterm-instructions-bar {
+      font-size: 0.78rem;
+      color: var(--panel-text-muted);
+      background: rgba(0, 210, 211, 0.06);
+      border-left: 3px solid var(--ans-accent);
+      padding: 0.5rem 0.85rem;
+      border-radius: 0 4px 4px 0;
       line-height: 1.5;
+    }
+
+    /* Mid-Term Filter Tabs */
+    .midterm-filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      background: var(--card-bg);
+      border: 1px solid var(--panel-border);
+      padding: 0.45rem;
+      border-radius: 6px;
+    }
+
+    .midterm-filter-btn {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--panel-text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .midterm-filter-btn:hover {
+      color: var(--panel-text);
+      background: var(--btn-bg);
+    }
+
+    .midterm-filter-btn.active {
+      background: var(--tab-active-bg);
+      color: var(--tab-active-text);
+      border-color: var(--tab-active-border);
+      font-weight: 800;
+    }
+
+    /* Original Photo Card */
+    .midterm-photo-box {
+      background: var(--card-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .midterm-photo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--btn-bg);
+      border-bottom: 1px solid var(--panel-border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .midterm-photo-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--panel-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .midterm-photo-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .midterm-action-link {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+      background: var(--card-bg);
+      border: 1px solid var(--panel-border);
+      color: var(--panel-text);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+
+    .midterm-action-link:hover {
+      border-color: var(--ans-accent);
+      color: var(--ans-accent);
+    }
+
+    .midterm-photo-body {
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.15);
+      cursor: zoom-in;
+    }
+
+    .midterm-photo-img {
+      max-width: 100%;
+      height: auto;
+      max-height: 650px;
+      border-radius: 4px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .midterm-photo-img:hover {
+      transform: scale(1.01);
+    }
+
+    /* Section Divider in Question View */
+    .midterm-section-divider {
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--ans-accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .midterm-section-divider h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--panel-text);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .midterm-section-divider span.sec-marks {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ans-accent);
+      background: var(--card-badge-bg);
+      border: 1px solid var(--card-badge-border);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .midterm-marks-pill {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .theme-dark .midterm-marks-pill {
+      color: #00d2d3;
+      background: rgba(0, 210, 211, 0.15);
+      border-color: rgba(0, 210, 211, 0.35);
+    }
+
+    .midterm-co-pill {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #64748b;
+      background: var(--btn-bg);
+      border: 1px solid var(--panel-border);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Responsive Tables for Trace Tables & Comparisons */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin: 0.85rem 0;
+      border-radius: 6px;
+      border: 1px solid var(--panel-border);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .exam-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      text-align: left;
+    }
+
+    .exam-table th {
+      background: var(--btn-bg);
+      color: var(--panel-text);
+      font-weight: 700;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 2px solid var(--ans-accent);
+      white-space: nowrap;
+    }
+
+    .exam-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--panel-border);
+      color: var(--ans-text);
+      line-height: 1.5;
+    }
+
+    .exam-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .exam-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .theme-light .exam-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+    }
+
+    .theme-light .exam-table td {
+      border-bottom: 1px solid #e2e8f0;
+      color: #1e293b;
+    }
+
+    .theme-light .exam-table tr:nth-child(even) td {
+      background: #f8fafc;
     }
 
     /* ─── SYLLABUS SECTION ─── */
@@ -1950,6 +2158,19 @@
     </div>
   </div>
 
+  <!-- MID-TERM QUESTION PAPER PHOTO MODAL -->
+  <div class="reference-modal-backdrop" id="midterm-photo-modal" onclick="closeModalOnBackdrop(event, 'midterm-photo-modal')">
+    <div class="reference-modal-window" style="max-width: 900px; max-height: 92vh; display: flex; flex-direction: column;">
+      <div class="reference-modal-header">
+        <h3>Original Question Paper — Manipal University Jaipur (CAP6105)</h3>
+        <button class="close-modal-x" onclick="closeReferenceModal('midterm-photo-modal')">&times;</button>
+      </div>
+      <div class="reference-modal-body" style="overflow-y: auto; text-align: center; padding: 1rem; flex: 1;">
+        <img src="assets/midterm_question_paper.jpg" alt="Original Question Paper Full Size" style="max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
+      </div>
+    </div>
+  </div>
+
   <!-- PITCH-BLACK FOOTER -->
   <footer class="reference-footer">
     <div class="footer-action-links">
@@ -1966,6 +2187,7 @@
   <script src="content_units_6_10.js"></script>
   <script src="content_units_11_15.js"></script>
   <script src="content_programs.js"></script>
+  <script src="content_midterm.js"></script>
 
   <!-- Interactive Logic -->
   <script>
@@ -2120,6 +2342,30 @@
       });
     }
 
+    // ─── Mid-Term Section State & Renderers ───
+    let currentMidtermFilter = 'all';
+
+    function setMidTermFilter(filter) {
+      currentMidtermFilter = filter;
+      renderMidTermContent();
+    }
+
+    function toggleMidTermQuestion(qKey) {
+      const card = document.getElementById(`midterm-card-${qKey}`);
+      if (!card) return;
+      const isCurrentlyOpen = card.classList.contains("open");
+
+      document.querySelectorAll(".midterm-qa-card.open").forEach(c => c.classList.remove("open"));
+
+      if (!isCurrentlyOpen) {
+        card.classList.add("open");
+      }
+    }
+
+    function openPhotoModal() {
+      openReferenceModal('midterm-photo-modal');
+    }
+
     // ─── Open Mid-Term Examination Paper in Side Panel ───
     function openMidTermSidePanel() {
       currentOpenUnitId = "midterm";
@@ -2129,6 +2375,10 @@
       const overlay = document.getElementById("panel-overlay");
       const tabsBar = panel ? panel.querySelector(".panel-nav-tabs") : null;
       if (!panel) return;
+
+      if (window.innerWidth <= 768) {
+        panel.style.width = "100vw";
+      }
 
       // Highlight active card
       document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));
@@ -2153,40 +2403,138 @@
       const body = document.getElementById("panel-scroll-body");
       if (!body) return;
 
-      body.innerHTML = `
-        <div class="midterm-container">
-          <div class="midterm-banner-box">
-            <div class="midterm-tag">University Examination Section</div>
-            <h3 class="midterm-heading">Mid-Term Question Paper &amp; Verified Solutions</h3>
-            <p class="midterm-desc">
-              Comprehensive step-by-step examination solutions, algorithm traces, flowchart logic, and verified C code.
-            </p>
+      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
+      if (!data) {
+        body.innerHTML = `<div style="padding: 2rem; color: var(--panel-text-muted);">Mid-term data loading...</div>`;
+        return;
+      }
+
+      const info = data.examInfo;
+      let html = `<div class="midterm-container">`;
+
+      // 1. Examination Header Banner
+      html += `
+        <div class="midterm-banner-box">
+          <div class="midterm-tag">${escapeHtml(info.session)}</div>
+          <h2 class="midterm-univ-title">🏛️ ${escapeHtml(info.institution)}</h2>
+          <div class="midterm-univ-sub">
+            ${escapeHtml(info.school)} &bull; ${escapeHtml(info.department)}<br>
+            <strong>${escapeHtml(info.program)}</strong> &bull; <strong>Course:</strong> ${escapeHtml(info.courseTitle)} (${escapeHtml(info.courseCode)})
           </div>
 
-          <div class="midterm-waiting-box">
-            <div class="midterm-waiting-icon">📝</div>
-            <h4 class="midterm-waiting-title">Awaiting Question Paper</h4>
-            <p class="midterm-waiting-text">
-              This section is configured and ready. Please provide your mid-term examination question paper, and all questions will be solved accurately with step-by-step derivations, code, and verified answers.
-            </p>
+          <div class="midterm-meta-grid">
+            <div class="midterm-meta-item">
+              <span class="midterm-meta-label">Candidate Name</span>
+              <span class="midterm-meta-val">${escapeHtml(info.studentName)}</span>
+            </div>
+            <div class="midterm-meta-item">
+              <span class="midterm-meta-label">Registration No</span>
+              <span class="midterm-meta-val">${escapeHtml(info.regNo)}</span>
+            </div>
+            <div class="midterm-meta-item">
+              <span class="midterm-meta-label">Maximum Marks</span>
+              <span class="midterm-meta-val">${info.maxMarks} Marks</span>
+            </div>
+            <div class="midterm-meta-item">
+              <span class="midterm-meta-label">Allotted Time</span>
+              <span class="midterm-meta-val">${escapeHtml(info.time)}</span>
+            </div>
           </div>
 
-          <div class="midterm-sections-preview">
-            <div class="midterm-preview-card">
-              <h5>Section A</h5>
-              <p>Short-answer definitions, tokens, operators &amp; control flow fundamentals</p>
-            </div>
-            <div class="midterm-preview-card">
-              <h5>Section B</h5>
-              <p>Algorithm formulation, flowchart construction &amp; decision structures</p>
-            </div>
-            <div class="midterm-preview-card">
-              <h5>Section C</h5>
-              <p>Code dry runs, output prediction, loops, arrays &amp; functions</p>
-            </div>
+          <div class="midterm-instructions-bar">
+            <strong>Exam Instructions:</strong> ${info.instructions.map(escapeHtml).join(' | ')}
           </div>
         </div>
       `;
+
+      // 2. Filter Navigation Bar
+      html += `
+        <div class="midterm-filter-bar">
+          <button class="midterm-filter-btn ${currentMidtermFilter === 'all' ? 'active' : ''}" onclick="setMidTermFilter('all')">
+            <span>📋</span> ALL SOLUTIONS (30M)
+          </button>
+          <button class="midterm-filter-btn ${currentMidtermFilter === 'paper' ? 'active' : ''}" onclick="setMidTermFilter('paper')">
+            <span>📷</span> QUESTION PAPER PHOTO
+          </button>
+          <button class="midterm-filter-btn ${currentMidtermFilter === 'section-a' ? 'active' : ''}" onclick="setMidTermFilter('section-a')">
+            <span>🅰️</span> SECTION A (8M)
+          </button>
+          <button class="midterm-filter-btn ${currentMidtermFilter === 'section-b' ? 'active' : ''}" onclick="setMidTermFilter('section-b')">
+            <span>🅱️</span> SECTION B (15M)
+          </button>
+          <button class="midterm-filter-btn ${currentMidtermFilter === 'section-c' ? 'active' : ''}" onclick="setMidTermFilter('section-c')">
+            <span>🅲</span> SECTION C (7M)
+          </button>
+        </div>
+      `;
+
+      // 3. Original Paper Photo Box
+      if (currentMidtermFilter === 'all' || currentMidtermFilter === 'paper') {
+        html += `
+          <div class="midterm-photo-box">
+            <div class="midterm-photo-header">
+              <div class="midterm-photo-title">
+                <span>📷</span> Original Question Paper (Official University Document)
+              </div>
+              <div class="midterm-photo-actions">
+                <a href="${info.paperPhoto}" class="midterm-action-link" download="Manipal_CAP6105_MidTerm_Paper.jpg">
+                  <span>⬇️</span> Download Photo
+                </a>
+                <button class="midterm-action-link" onclick="openPhotoModal()">
+                  <span>🔍</span> View Fullscreen
+                </button>
+              </div>
+            </div>
+            <div class="midterm-photo-body" onclick="openPhotoModal()" title="Click to view full resolution">
+              <img src="${info.paperPhoto}" alt="Manipal University Jaipur Mid-Term Question Paper" class="midterm-photo-img" loading="lazy" />
+            </div>
+          </div>
+        `;
+      }
+
+      // 4. Questions by Section
+      data.sections.forEach(sec => {
+        if (currentMidtermFilter !== 'all' && currentMidtermFilter !== sec.id) return;
+
+        html += `
+          <div class="midterm-section-divider">
+            <h4><span>📌</span> ${escapeHtml(sec.name)} &mdash; ${escapeHtml(sec.desc)}</h4>
+            <span class="sec-marks">${sec.totalMarks} Marks Total</span>
+          </div>
+          <div class="qa-stack">
+        `;
+
+        sec.questions.forEach((q, qIdx) => {
+          const qKey = `${sec.id}-${q.num}`;
+          // Default Q1 open in Section A on first view
+          const isOpen = (sec.id === 'section-a' && qIdx === 0 && currentMidtermFilter === 'all') || (currentMidtermFilter === sec.id && qIdx === 0);
+
+          html += `
+            <div class="qa-card midterm-qa-card ${isOpen ? 'open' : ''}" id="midterm-card-${qKey}">
+              <button class="qa-btn" onclick="toggleMidTermQuestion('${qKey}')">
+                <div class="qa-left">
+                  <span class="qa-num-badge">${escapeHtml(q.num)}</span>
+                  <span class="midterm-marks-pill">${q.marks}M</span>
+                  <span class="midterm-co-pill">${escapeHtml(q.co)}</span>
+                  <span class="qa-text">${escapeHtml(q.q.split('\n')[0])}</span>
+                </div>
+                <span class="qa-arrow">&#9660;</span>
+              </button>
+              <div class="qa-answer-drawer">
+                <div class="qa-answer-box">
+                  ${q.q.includes('\n```') ? `<div style="margin-bottom: 0.85rem;"><strong>Question Code:</strong>${formatAnswer(q.q.substring(q.q.indexOf('\n')))}</div>` : ''}
+                  ${formatAnswer(q.a)}
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+      });
+
+      html += `</div>`;
+      body.innerHTML = html;
       body.scrollTop = 0;
     }
 
@@ -2444,11 +2792,11 @@
       });
     }
 
-    // ─── Format Answer with Visual Studio Code Editor Windows (Requirement 3) ───
+    // ─── Format Answer with Tables, Markdown, and Visual Studio Code Editor (Requirement 3) ───
     function formatAnswer(text) {
       if (!text) return "";
 
-      // Extract fenced code blocks first so raw syntax, indentation, and special characters remain pristine
+      // 1. Extract fenced code blocks first so raw syntax, indentation, and special characters remain pristine
       const codeBlocks = [];
       let processed = text.replace(/```(?:[a-zA-Z0-9_-]+)?\r?\n?([\s\S]*?)```/g, (match, code) => {
         const id = `___CODE_WRITEUP_${codeBlocks.length}___`;
@@ -2456,19 +2804,60 @@
         return id;
       });
 
-      // Escape narrative text
+      // 2. Extract markdown tables so formatting and alignment are pristine
+      const tableBlocks = [];
+      processed = processed.replace(/(?:^|\n)((?:\|[^\n\r|]+\|(?:\r?\n)?)+)/g, (match, tableText) => {
+        const lines = tableText.trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        if (lines.length >= 2 && lines[0].startsWith('|') && lines[1].includes('---')) {
+          const headerCells = lines[0].split('|').slice(1, -1).map(c => c.trim());
+          const rows = lines.slice(2).map(line => line.split('|').slice(1, -1).map(c => c.trim()));
+
+          function formatCell(cell) {
+            let s = escapeHtml(cell);
+            s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+            return s;
+          }
+
+          let tableHtml = `<div class="table-responsive"><table class="exam-table"><thead><tr>`;
+          headerCells.forEach(hc => {
+            tableHtml += `<th>${formatCell(hc)}</th>`;
+          });
+          tableHtml += `</tr></thead><tbody>`;
+          rows.forEach(row => {
+            tableHtml += `<tr>`;
+            row.forEach(cell => {
+              tableHtml += `<td>${formatCell(cell)}</td>`;
+            });
+            tableHtml += `</tr>`;
+          });
+          tableHtml += `</tbody></table></div>`;
+
+          const tId = `___TABLE_BLOCK_${tableBlocks.length}___`;
+          tableBlocks.push(tableHtml);
+          return '\n' + tId + '\n';
+        }
+        return match;
+      });
+
+      // 3. Escape narrative text
       processed = escapeHtml(processed);
 
-      // Bold formatting **text**
+      // 4. Bold formatting **text**
       processed = processed.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 
-      // Format line breaks
+      // 5. Format line breaks
       processed = processed.replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
 
-      // Inline `code`
+      // 6. Inline `code`
       processed = processed.replace(/`([^`]+)`/g, "<code>$1</code>");
 
-      // Re-inject clear code writeup with syntax highlighting, line numbers, and copy button
+      // 7. Re-inject Markdown Tables
+      tableBlocks.forEach((tbl, idx) => {
+        processed = processed.replace(`___TABLE_BLOCK_${idx}___`, tbl);
+      });
+
+      // 8. Re-inject clear code writeup with syntax highlighting, line numbers, and copy button
       codeBlocks.forEach((code, idx) => {
         const snippetId = `snippet_${idx}_` + Math.random().toString(36).substr(2, 6);
         THEORY_CODE_SNIPPETS[snippetId] = code;
