@@ -1125,6 +1125,98 @@
       background: #f8fafc;
     }
 
+    /* ─── Raw Document Format Styling ─── */
+    .raw-document-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .raw-document-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--panel-border);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .raw-doc-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--ans-accent);
+      background: var(--card-badge-bg);
+      border: 1px solid var(--card-badge-border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+    }
+
+    .raw-document-paper {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .raw-sec-header {
+      margin: 1.5rem 0 1rem 0;
+      padding-bottom: 0.45rem;
+      border-bottom: 2px solid var(--ans-accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .raw-sec-header h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--panel-text);
+      margin: 0;
+    }
+
+    .raw-question-block {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed var(--panel-border);
+    }
+
+    .raw-question-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .raw-q-title {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .raw-q-text {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--panel-text);
+      line-height: 1.5;
+    }
+
+    .raw-answer-content {
+      padding-left: 0.5rem;
+      color: var(--ans-text);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
     /* ─── SYLLABUS SECTION ─── */
     .syllabus-view {
       display: flex;
@@ -2366,6 +2458,23 @@
       openReferenceModal('midterm-photo-modal');
     }
 
+    function copyRawMidtermSolutions(btn) {
+      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
+      if (!data || !data.examInfo || !data.examInfo.rawMarkdown) return;
+
+      navigator.clipboard.writeText(data.examInfo.rawMarkdown).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = `<span>✓</span> Copied to Clipboard!`;
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove("copied");
+        }, 2200);
+      }).catch(err => {
+        console.error("Copy error:", err);
+      });
+    }
+
     // ─── Open Mid-Term Examination Paper in Side Panel ───
     function openMidTermSidePanel() {
       currentOpenUnitId = "midterm";
@@ -2453,8 +2562,11 @@
           <button class="midterm-filter-btn ${currentMidtermFilter === 'all' ? 'active' : ''}" onclick="setMidTermFilter('all')">
             <span>📋</span> ALL SOLUTIONS (30M)
           </button>
+          <button class="midterm-filter-btn ${currentMidtermFilter === 'raw' ? 'active' : ''}" onclick="setMidTermFilter('raw')">
+            <span>📄</span> RAW EXAM PAPER
+          </button>
           <button class="midterm-filter-btn ${currentMidtermFilter === 'paper' ? 'active' : ''}" onclick="setMidTermFilter('paper')">
-            <span>📷</span> QUESTION PAPER PHOTO
+            <span>📷</span> EDITED QUESTION PAPER PHOTO
           </button>
           <button class="midterm-filter-btn ${currentMidtermFilter === 'section-a' ? 'active' : ''}" onclick="setMidTermFilter('section-a')">
             <span>🅰️</span> SECTION A (8M)
@@ -2468,16 +2580,68 @@
         </div>
       `;
 
-      // 3. Original Paper Photo Box
+      // 3. Raw Document View
+      if (currentMidtermFilter === 'raw') {
+        html += `
+          <div class="raw-document-container">
+            <div class="raw-document-toolbar">
+              <div class="raw-toolbar-left">
+                <span class="raw-doc-badge">📄 RAW EXAMINATION SCRIPT</span>
+                <span style="font-size: 0.8rem; color: var(--panel-text-muted);">Continuous Document Format</span>
+              </div>
+              <div class="raw-toolbar-right" style="display: flex; gap: 0.5rem;">
+                <button class="midterm-action-link" onclick="copyRawMidtermSolutions(this)">
+                  <span>📋</span> Copy Raw Text
+                </button>
+                <a href="MIDTERM_EXAM_SOLUTIONS_RAW.md" download="CAP6105_MidTerm_Solved_Raw.md" class="midterm-action-link">
+                  <span>⬇️</span> Download .md File
+                </a>
+              </div>
+            </div>
+            <div class="raw-document-paper">
+        `;
+
+        data.sections.forEach(sec => {
+          html += `
+            <div class="raw-sec-header">
+              <h3>${escapeHtml(sec.name)} &mdash; ${escapeHtml(sec.desc)}</h3>
+              <span class="sec-marks">${sec.totalMarks} Marks</span>
+            </div>
+          `;
+          sec.questions.forEach(q => {
+            html += `
+              <div class="raw-question-block">
+                <div class="raw-q-title">
+                  <span class="qa-num-badge">${escapeHtml(q.num)}</span>
+                  <span class="midterm-marks-pill">${q.marks} Marks</span>
+                  <span class="midterm-co-pill">${escapeHtml(q.co)}</span>
+                  <span class="raw-q-text">${escapeHtml(q.q.split('\n')[0])}</span>
+                </div>
+                ${q.q.includes('\n```') ? `<div style="margin-bottom: 0.85rem;">${formatAnswer(q.q.substring(q.q.indexOf('\n')))}</div>` : ''}
+                <div class="raw-answer-content">
+                  ${formatAnswer(q.a)}
+                </div>
+              </div>
+            `;
+          });
+        });
+
+        html += `</div></div></div>`;
+        body.innerHTML = html;
+        body.scrollTop = 0;
+        return;
+      }
+
+      // 4. Edited Paper Photo Box
       if (currentMidtermFilter === 'all' || currentMidtermFilter === 'paper') {
         html += `
           <div class="midterm-photo-box">
             <div class="midterm-photo-header">
               <div class="midterm-photo-title">
-                <span>📷</span> Original Question Paper (Official University Document)
+                <span>📷</span> Edited Question Paper (Desk/Legs Background Removed &amp; Enhanced)
               </div>
               <div class="midterm-photo-actions">
-                <a href="${info.paperPhoto}" class="midterm-action-link" download="Manipal_CAP6105_MidTerm_Paper.jpg">
+                <a href="${info.paperPhoto}" class="midterm-action-link" download="Manipal_CAP6105_MidTerm_Paper_Edited.jpg">
                   <span>⬇️</span> Download Photo
                 </a>
                 <button class="midterm-action-link" onclick="openPhotoModal()">
@@ -2492,7 +2656,7 @@
         `;
       }
 
-      // 4. Questions by Section
+      // 5. Questions by Section (Accordion Mode)
       data.sections.forEach(sec => {
         if (currentMidtermFilter !== 'all' && currentMidtermFilter !== sec.id) return;
 
