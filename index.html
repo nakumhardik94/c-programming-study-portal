@@ -7,7 +7,7 @@
   <!-- Google Fonts: Montserrat (Header/Brand/Cards) & Inter (Body/Reading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&family=Kalam:wght@400;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -1125,96 +1125,385 @@
       background: #f8fafc;
     }
 
-    /* ─── Raw Document Format Styling ─── */
-    .raw-document-container {
+    /* ─── HANDWRITTEN EXAM ANSWER SCRIPT STYLING ─── */
+    .handwritten-container {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.25rem;
+      padding: 0.25rem 0 3.5rem 0;
     }
 
-    .raw-document-toolbar {
+    .handwritten-toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--card-bg);
       border: 1px solid var(--panel-border);
       padding: 0.75rem 1rem;
+      border-radius: 8px;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .handwritten-toolbar-left,
+    .handwritten-toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-download-primary {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: #0284c7;
+      color: #ffffff;
+      border: 1px solid #0284c7;
+      padding: 0.45rem 0.95rem;
       border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-download-primary:hover {
+      background: #0369a1;
+      border-color: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    .btn-paper-action {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      background: var(--btn-bg);
+      color: var(--panel-text);
+      border: 1px solid var(--panel-border);
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-paper-action:hover {
+      border-color: var(--ans-accent);
+      color: var(--ans-accent);
+    }
+
+    .style-toggle-pill {
+      display: inline-flex;
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--btn-bg);
+    }
+
+    .style-toggle-btn {
+      border: none;
+      background: transparent;
+      color: var(--panel-text-muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .style-toggle-btn.active {
+      background: var(--tab-active-bg);
+      color: var(--tab-active-text);
+      font-weight: 800;
+    }
+
+    /* The Authentic Lined Exam Paper Sheet */
+    .paper-sheet {
+      background-color: #fdfbf7;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    /* Mode 1: Handwritten Ruled College Exam Paper */
+    
+    .paper-sheet.mode-handwritten .exam-table {
+      border: 2px solid #0f2c59;
+      background: rgba(255, 255, 255, 0.9);
+      margin: 1.25rem 0;
+      box-shadow: 0 2px 8px rgba(15, 44, 89, 0.08);
+    }
+    .paper-sheet.mode-handwritten .exam-table th {
+      background: #0f2c59;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 0.85rem;
+    }
+    .paper-sheet.mode-handwritten .exam-table td {
+      color: #0f2c59;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(15, 44, 89, 0.2);
+      padding: 0.65rem 0.85rem;
+    }
+    .paper-sheet.mode-handwritten .code-writeup {
+      margin: 1.25rem 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+
+.paper-sheet.mode-handwritten {
+      font-family: 'Kalam', 'Caveat', cursive, sans-serif;
+      font-size: 1.15rem;
+      line-height: 34px;
+      color: #0f2c59; /* Royal blue gel pen ink */
+      background-color: #fcfbf8;
+      background-image: 
+        linear-gradient(90deg, transparent 72px, #f43f5e 73px, #f43f5e 75px, transparent 76px),
+        repeating-linear-gradient(transparent, transparent 33px, #cbd5e1 34px);
+      background-size: 100% 100%, 100% 34px;
+      background-position: 0 0, 0 10px;
+      padding: 2.2rem 2.5rem 4rem 6.2rem;
+    }
+
+    /* Mode 2: Clean Typed University Paper */
+    .paper-sheet.mode-typed {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--panel-text);
+      background-color: var(--panel-bg);
+      padding: 2.2rem 2.5rem 4rem 2.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .paper-sheet.mode-handwritten {
+        padding: 1.25rem 0.85rem 3rem 3.4rem;
+        font-size: 1.02rem;
+        line-height: 30px;
+        background-size: 100% 100%, 100% 30px;
+        background-image: 
+          linear-gradient(90deg, transparent 46px, #f43f5e 47px, #f43f5e 48px, transparent 49px),
+          repeating-linear-gradient(transparent, transparent 29px, #cbd5e1 30px);
+      }
+      .paper-sheet.mode-typed {
+        padding: 1.25rem 1rem 3rem 1rem;
+      }
+    }
+
+    /* Answer Booklet Header Card */
+    .booklet-header {
+      border: 2px solid #0f2c59;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.88);
+      text-align: center;
+    }
+
+    .mode-typed .booklet-header {
+      border-color: var(--panel-border);
+      background: var(--card-bg);
+    }
+
+    .booklet-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .booklet-sub {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .booklet-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.5rem;
+      border-top: 1px dashed rgba(15, 44, 89, 0.35);
+      border-bottom: 1px dashed rgba(15, 44, 89, 0.35);
+      padding: 0.65rem 0;
+      margin-bottom: 0.65rem;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    .mode-typed .booklet-info-grid {
+      border-color: var(--panel-border);
+    }
+
+    /* Section Separator */
+    .booklet-section-banner {
+      border-bottom: 2px solid #0f2c59;
+      margin: 2.25rem 0 1.25rem 0;
+      padding-bottom: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       flex-wrap: wrap;
       gap: 0.5rem;
     }
 
-    .raw-doc-badge {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
+    .mode-typed .booklet-section-banner {
+      border-color: var(--ans-accent);
+    }
+
+    .booklet-section-banner h2 {
+      font-family: 'Montserrat', 'Kalam', cursive, sans-serif;
+      font-size: 1.18rem;
       font-weight: 800;
-      color: var(--ans-accent);
-      background: var(--card-badge-bg);
-      border: 1px solid var(--card-badge-border);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      margin-right: 0.5rem;
-    }
-
-    .raw-document-paper {
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      border-radius: 8px;
-      padding: 1.5rem 1.75rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    .raw-sec-header {
-      margin: 1.5rem 0 1rem 0;
-      padding-bottom: 0.45rem;
-      border-bottom: 2px solid var(--ans-accent);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .raw-sec-header h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--panel-text);
+      text-transform: uppercase;
       margin: 0;
     }
 
-    .raw-question-block {
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px dashed var(--panel-border);
+    .booklet-section-banner span.sec-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0.85;
     }
 
-    .raw-question-block:last-child {
+    /* Individual Continuous Question & Answer Block */
+    .booklet-qa-entry {
+      margin-bottom: 2.25rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px dashed rgba(15, 44, 89, 0.25);
+      position: relative;
+    }
+
+    .mode-typed .booklet-qa-entry {
+      border-color: var(--panel-border);
+    }
+
+    .booklet-qa-entry:last-child {
       border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
     }
 
-    .raw-q-title {
+    /* Question Header with Margin Label */
+    .booklet-q-header {
       display: flex;
       align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
       flex-wrap: wrap;
     }
 
-    .raw-q-text {
-      font-size: 0.96rem;
-      font-weight: 700;
-      color: var(--panel-text);
-      line-height: 1.5;
+    .margin-q-tag {
+      font-family: 'Montserrat', 'Kalam', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 900;
+      color: #f43f5e; /* Red ink margin */
+      background: transparent;
+      margin-left: -5rem;
+      width: 4.5rem;
+      text-align: right;
+      display: inline-block;
     }
 
-    .raw-answer-content {
-      padding-left: 0.5rem;
-      color: var(--ans-text);
+    @media (max-width: 640px) {
+      .margin-q-tag {
+        margin-left: 0;
+        width: auto;
+        text-align: left;
+        background: #ffe4e6;
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+    }
+
+    .booklet-q-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #0f2c59;
+    }
+
+    .mode-typed .booklet-q-title {
+      color: var(--panel-text);
+      font-size: 0.98rem;
+    }
+
+    .booklet-marks-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(15, 44, 89, 0.1);
+      color: #0f2c59;
+      border: 1px solid rgba(15, 44, 89, 0.2);
+    }
+
+    .mode-typed .booklet-marks-tag {
+      background: var(--card-badge-bg);
+      color: var(--ans-accent);
+      border-color: var(--card-badge-border);
+    }
+
+    .booklet-ans-body {
+      font-size: 1.08rem;
+      line-height: 34px;
+      color: #0f2c59;
+    }
+
+    .mode-typed .booklet-ans-body {
       font-size: 0.92rem;
       line-height: 1.7;
+      color: var(--ans-text);
+    }
+
+    /* Print Stylesheet for Browser PDF Export */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      header.reference-header,
+      .hero-banner-strip,
+      .portal-main-container,
+      footer.reference-footer,
+      .handwritten-toolbar,
+      .panel-header,
+      .panel-resizer,
+      .unit-panel-overlay {
+        display: none !important;
+      }
+      .unit-side-panel {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        transform: none !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+      .panel-scroll-body {
+        overflow: visible !important;
+        padding: 0 !important;
+      }
+      .paper-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0.5in !important;
+      }
     }
 
     /* ─── SYLLABUS SECTION ─── */
@@ -2435,27 +2724,62 @@
     }
 
     // ─── Mid-Term Section State & Renderers ───
-    let currentMidtermFilter = 'all';
+    let currentPaperStyleMode = 'handwritten';
 
-    function setMidTermFilter(filter) {
-      currentMidtermFilter = filter;
-      renderMidTermContent();
-    }
+    function setPaperStyleMode(mode) {
+      currentPaperStyleMode = mode;
+      const sheet = document.getElementById("midterm-paper-sheet");
+      const btnHandwritten = document.getElementById("style-toggle-handwritten");
+      const btnTyped = document.getElementById("style-toggle-typed");
+      if (!sheet) return;
 
-    function toggleMidTermQuestion(qKey) {
-      const card = document.getElementById(`midterm-card-${qKey}`);
-      if (!card) return;
-      const isCurrentlyOpen = card.classList.contains("open");
-
-      document.querySelectorAll(".midterm-qa-card.open").forEach(c => c.classList.remove("open"));
-
-      if (!isCurrentlyOpen) {
-        card.classList.add("open");
+      if (mode === "handwritten") {
+        sheet.classList.remove("mode-typed");
+        sheet.classList.add("mode-handwritten");
+        if (btnHandwritten) btnHandwritten.classList.add("active");
+        if (btnTyped) btnTyped.classList.remove("active");
+      } else {
+        sheet.classList.remove("mode-handwritten");
+        sheet.classList.add("mode-typed");
+        if (btnTyped) btnTyped.classList.add("active");
+        if (btnHandwritten) btnHandwritten.classList.remove("active");
       }
     }
 
     function openPhotoModal() {
       openReferenceModal('midterm-photo-modal');
+    }
+
+    function downloadSolvedPaperPDF() {
+      window.print();
+    }
+
+    function downloadSolvedPaperMD() {
+      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
+      const mdContent = (data && data.examInfo && data.examInfo.rawMarkdown) ? data.examInfo.rawMarkdown : "";
+      const blob = new Blob([mdContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Manipal_CAP6105_MidTerm_Solved_Paper.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadSolvedPaperText() {
+      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
+      const mdContent = (data && data.examInfo && data.examInfo.rawMarkdown) ? data.examInfo.rawMarkdown : "";
+      const blob = new Blob([mdContent], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Manipal_CAP6105_MidTerm_Solved_Paper.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
     function copyRawMidtermSolutions(btn) {
@@ -2464,7 +2788,7 @@
 
       navigator.clipboard.writeText(data.examInfo.rawMarkdown).then(() => {
         const orig = btn.innerHTML;
-        btn.innerHTML = `<span>✓</span> Copied to Clipboard!`;
+        btn.innerHTML = `<span>✓</span> Copied All!`;
         btn.classList.add("copied");
         setTimeout(() => {
           btn.innerHTML = orig;
@@ -2519,188 +2843,105 @@
       }
 
       const info = data.examInfo;
-      let html = `<div class="midterm-container">`;
+      let html = `<div class="handwritten-container">`;
 
-      // 1. Examination Header Banner
+      // 1. Download & Action Toolbar
       html += `
-        <div class="midterm-banner-box">
-          <div class="midterm-tag">${escapeHtml(info.session)}</div>
-          <h2 class="midterm-univ-title">🏛️ ${escapeHtml(info.institution)}</h2>
-          <div class="midterm-univ-sub">
-            ${escapeHtml(info.school)} &bull; ${escapeHtml(info.department)}<br>
-            <strong>${escapeHtml(info.program)}</strong> &bull; <strong>Course:</strong> ${escapeHtml(info.courseTitle)} (${escapeHtml(info.courseCode)})
+        <div class="handwritten-toolbar">
+          <div class="handwritten-toolbar-left">
+            <button class="btn-download-primary" onclick="downloadSolvedPaperPDF()" title="Print / Save complete paper as PDF">
+              <span>📥</span> Download PDF (Print)
+            </button>
+            <button class="btn-paper-action" onclick="downloadSolvedPaperMD()" title="Download raw Markdown format file">
+              <span>📄</span> Download .md
+            </button>
+            <button class="btn-paper-action" onclick="downloadSolvedPaperText()" title="Download plain text file">
+              <span>📝</span> Download .txt
+            </button>
+            <button class="btn-paper-action" onclick="copyRawMidtermSolutions(this)" title="Copy entire raw solved answer script to clipboard">
+              <span>📋</span> Copy All
+            </button>
+            <button class="btn-paper-action" onclick="openPhotoModal()" title="View cropped &amp; enhanced scan of original question paper">
+              <span>📷</span> Question Paper Photo
+            </button>
           </div>
-
-          <div class="midterm-meta-grid">
-            <div class="midterm-meta-item">
-              <span class="midterm-meta-label">Candidate Name</span>
-              <span class="midterm-meta-val">${escapeHtml(info.studentName)}</span>
-            </div>
-            <div class="midterm-meta-item">
-              <span class="midterm-meta-label">Registration No</span>
-              <span class="midterm-meta-val">${escapeHtml(info.regNo)}</span>
-            </div>
-            <div class="midterm-meta-item">
-              <span class="midterm-meta-label">Maximum Marks</span>
-              <span class="midterm-meta-val">${info.maxMarks} Marks</span>
-            </div>
-            <div class="midterm-meta-item">
-              <span class="midterm-meta-label">Allotted Time</span>
-              <span class="midterm-meta-val">${escapeHtml(info.time)}</span>
-            </div>
-          </div>
-
-          <div class="midterm-instructions-bar">
-            <strong>Exam Instructions:</strong> ${info.instructions.map(escapeHtml).join(' | ')}
-          </div>
-        </div>
-      `;
-
-      // 2. Filter Navigation Bar
-      html += `
-        <div class="midterm-filter-bar">
-          <button class="midterm-filter-btn ${currentMidtermFilter === 'all' ? 'active' : ''}" onclick="setMidTermFilter('all')">
-            <span>📋</span> ALL SOLUTIONS (30M)
-          </button>
-          <button class="midterm-filter-btn ${currentMidtermFilter === 'raw' ? 'active' : ''}" onclick="setMidTermFilter('raw')">
-            <span>📄</span> RAW EXAM PAPER
-          </button>
-          <button class="midterm-filter-btn ${currentMidtermFilter === 'paper' ? 'active' : ''}" onclick="setMidTermFilter('paper')">
-            <span>📷</span> EDITED QUESTION PAPER PHOTO
-          </button>
-          <button class="midterm-filter-btn ${currentMidtermFilter === 'section-a' ? 'active' : ''}" onclick="setMidTermFilter('section-a')">
-            <span>🅰️</span> SECTION A (8M)
-          </button>
-          <button class="midterm-filter-btn ${currentMidtermFilter === 'section-b' ? 'active' : ''}" onclick="setMidTermFilter('section-b')">
-            <span>🅱️</span> SECTION B (15M)
-          </button>
-          <button class="midterm-filter-btn ${currentMidtermFilter === 'section-c' ? 'active' : ''}" onclick="setMidTermFilter('section-c')">
-            <span>🅲</span> SECTION C (7M)
-          </button>
-        </div>
-      `;
-
-      // 3. Raw Document View
-      if (currentMidtermFilter === 'raw') {
-        html += `
-          <div class="raw-document-container">
-            <div class="raw-document-toolbar">
-              <div class="raw-toolbar-left">
-                <span class="raw-doc-badge">📄 RAW EXAMINATION SCRIPT</span>
-                <span style="font-size: 0.8rem; color: var(--panel-text-muted);">Continuous Document Format</span>
-              </div>
-              <div class="raw-toolbar-right" style="display: flex; gap: 0.5rem;">
-                <button class="midterm-action-link" onclick="copyRawMidtermSolutions(this)">
-                  <span>📋</span> Copy Raw Text
-                </button>
-                <a href="MIDTERM_EXAM_SOLUTIONS_RAW.md" download="CAP6105_MidTerm_Solved_Raw.md" class="midterm-action-link">
-                  <span>⬇️</span> Download .md File
-                </a>
-              </div>
-            </div>
-            <div class="raw-document-paper">
-        `;
-
-        data.sections.forEach(sec => {
-          html += `
-            <div class="raw-sec-header">
-              <h3>${escapeHtml(sec.name)} &mdash; ${escapeHtml(sec.desc)}</h3>
-              <span class="sec-marks">${sec.totalMarks} Marks</span>
-            </div>
-          `;
-          sec.questions.forEach(q => {
-            html += `
-              <div class="raw-question-block">
-                <div class="raw-q-title">
-                  <span class="qa-num-badge">${escapeHtml(q.num)}</span>
-                  <span class="midterm-marks-pill">${q.marks} Marks</span>
-                  <span class="midterm-co-pill">${escapeHtml(q.co)}</span>
-                  <span class="raw-q-text">${escapeHtml(q.q.split('\n')[0])}</span>
-                </div>
-                ${q.q.includes('\n```') ? `<div style="margin-bottom: 0.85rem;">${formatAnswer(q.q.substring(q.q.indexOf('\n')))}</div>` : ''}
-                <div class="raw-answer-content">
-                  ${formatAnswer(q.a)}
-                </div>
-              </div>
-            `;
-          });
-        });
-
-        html += `</div></div></div>`;
-        body.innerHTML = html;
-        body.scrollTop = 0;
-        return;
-      }
-
-      // 4. Edited Paper Photo Box
-      if (currentMidtermFilter === 'all' || currentMidtermFilter === 'paper') {
-        html += `
-          <div class="midterm-photo-box">
-            <div class="midterm-photo-header">
-              <div class="midterm-photo-title">
-                <span>📷</span> Edited Question Paper (Desk/Legs Background Removed &amp; Enhanced)
-              </div>
-              <div class="midterm-photo-actions">
-                <a href="${info.paperPhoto}" class="midterm-action-link" download="Manipal_CAP6105_MidTerm_Paper_Edited.jpg">
-                  <span>⬇️</span> Download Photo
-                </a>
-                <button class="midterm-action-link" onclick="openPhotoModal()">
-                  <span>🔍</span> View Fullscreen
-                </button>
-              </div>
-            </div>
-            <div class="midterm-photo-body" onclick="openPhotoModal()" title="Click to view full resolution">
-              <img src="${info.paperPhoto}" alt="Manipal University Jaipur Mid-Term Question Paper" class="midterm-photo-img" loading="lazy" />
-            </div>
-          </div>
-        `;
-      }
-
-      // 5. Questions by Section (Accordion Mode)
-      data.sections.forEach(sec => {
-        if (currentMidtermFilter !== 'all' && currentMidtermFilter !== sec.id) return;
-
-        html += `
-          <div class="midterm-section-divider">
-            <h4><span>📌</span> ${escapeHtml(sec.name)} &mdash; ${escapeHtml(sec.desc)}</h4>
-            <span class="sec-marks">${sec.totalMarks} Marks Total</span>
-          </div>
-          <div class="qa-stack">
-        `;
-
-        sec.questions.forEach((q, qIdx) => {
-          const qKey = `${sec.id}-${q.num}`;
-          // Default Q1 open in Section A on first view
-          const isOpen = (sec.id === 'section-a' && qIdx === 0 && currentMidtermFilter === 'all') || (currentMidtermFilter === sec.id && qIdx === 0);
-
-          html += `
-            <div class="qa-card midterm-qa-card ${isOpen ? 'open' : ''}" id="midterm-card-${qKey}">
-              <button class="qa-btn" onclick="toggleMidTermQuestion('${qKey}')">
-                <div class="qa-left">
-                  <span class="qa-num-badge">${escapeHtml(q.num)}</span>
-                  <span class="midterm-marks-pill">${q.marks}M</span>
-                  <span class="midterm-co-pill">${escapeHtml(q.co)}</span>
-                  <span class="qa-text">${escapeHtml(q.q.split('\n')[0])}</span>
-                </div>
-                <span class="qa-arrow">&#9660;</span>
+          <div class="handwritten-toolbar-right">
+            <div class="style-toggle-pill" title="Toggle visual writing presentation">
+              <button id="style-toggle-handwritten" class="style-toggle-btn ${currentPaperStyleMode === 'handwritten' ? 'active' : ''}" onclick="setPaperStyleMode('handwritten')">
+                ✍️ Handwritten Paper
               </button>
-              <div class="qa-answer-drawer">
-                <div class="qa-answer-box">
-                  ${q.q.includes('\n```') ? `<div style="margin-bottom: 0.85rem;"><strong>Question Code:</strong>${formatAnswer(q.q.substring(q.q.indexOf('\n')))}</div>` : ''}
-                  ${formatAnswer(q.a)}
-                </div>
+              <button id="style-toggle-typed" class="style-toggle-btn ${currentPaperStyleMode === 'typed' ? 'active' : ''}" onclick="setPaperStyleMode('typed')">
+                🖨️ Typed
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // 2. The Continuous Ruled Examination Answer Sheet
+      html += `
+        <div id="midterm-paper-sheet" class="paper-sheet mode-${currentPaperStyleMode}">
+          <!-- Answer Booklet Header Card -->
+          <div class="booklet-header">
+            <div class="booklet-title">🏛️ ${escapeHtml(info.institution)}</div>
+            <div class="booklet-sub">
+              ${escapeHtml(info.session)} &bull; ${escapeHtml(info.school)} &bull; ${escapeHtml(info.department)}<br>
+              <strong>${escapeHtml(info.program)}</strong> &bull; Course: <strong>${escapeHtml(info.courseTitle)} (${escapeHtml(info.courseCode)})</strong> &bull; Semester: I
+            </div>
+
+            <div class="booklet-info-grid">
+              <div><strong>Candidate Name:</strong> ${escapeHtml(info.studentName)}</div>
+              <div><strong>Registration No:</strong> ${escapeHtml(info.regNo)}</div>
+              <div><strong>Maximum Marks:</strong> ${info.maxMarks} Marks</div>
+              <div><strong>Allotted Time:</strong> ${escapeHtml(info.time)}</div>
+            </div>
+
+            <div style="font-size: 0.8rem; opacity: 0.88; margin-top: 0.4rem;">
+              <strong>Examination Instructions:</strong> ${info.instructions.map(escapeHtml).join(' &bull; ')}
+            </div>
+          </div>
+      `;
+
+      // 3. Continuous Sections & Questions (Unbroken flow - NOT separated accordions)
+      data.sections.forEach(sec => {
+        html += `
+          <div class="booklet-section-banner">
+            <h2>${escapeHtml(sec.name)} &mdash; ${escapeHtml(sec.desc)}</h2>
+            <span class="sec-badge">${sec.totalMarks} Marks Total</span>
+          </div>
+        `;
+
+        sec.questions.forEach(q => {
+          const ansNumber = q.num.replace(/^Q/i, '');
+          const firstLine = q.q.split('\n')[0];
+          html += `
+            <div class="booklet-qa-entry" id="entry-${sec.id}-${q.num}">
+              <div class="booklet-q-header">
+                <span class="margin-q-tag">Ans ${escapeHtml(ansNumber)}.</span>
+                <span class="booklet-q-title">${escapeHtml(firstLine)}</span>
+                <span class="booklet-marks-tag">${q.marks} Marks &bull; ${escapeHtml(q.co)}</span>
+              </div>
+              ${q.q.includes('\n```') ? `<div style="margin: 0.5rem 0 0.85rem 0;"><strong>Question Code:</strong>${formatAnswer(q.q.substring(q.q.indexOf('\n')))}</div>` : ''}
+              <div class="booklet-ans-body">
+                ${formatAnswer(q.a)}
               </div>
             </div>
           `;
         });
-
-        html += `</div>`;
       });
 
-      html += `</div>`;
+      // 4. Script Completion Stamp
+      html += `
+          <div style="text-align: center; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 2px dashed rgba(15, 44, 89, 0.35); font-weight: 800; letter-spacing: 0.08em; opacity: 0.85; font-size: 0.95rem;">
+            ✍️ ~ ~ ~ END OF MID-TERM EXAMINATION ANSWER SCRIPT (30 / 30 MARKS) ~ ~ ~
+          </div>
+        </div>
+      </div>`;
+
       body.innerHTML = html;
       body.scrollTop = 0;
     }
+
 
     // ─── Open Unit in Side Panel ───
     function openUnitSidePanel(unitId, section = 'theory') {
