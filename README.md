@@ -8,10 +8,15 @@
 
 ## 📸 Previews & Screenshots
 
-### ✍️ Solved Mid-Term Examination Paper (Continuous Handwritten Answer Script Format)
-| Authentic Ruled Handwritten Script | Clean Typed Examination Mode | Original Question Paper Photo (Enhanced Scan) |
+### 📜 Solved University Examination Papers (Paper 1 & Paper 2)
+| Home Grid: Paper 1 & Paper 2 | Paper 2: Clean Text Written Mode | Paper 2: Analytical Tables & C Code |
 | :---: | :---: | :---: |
-| ![Handwritten Answer Script](screenshots/final_handwritten_tables_view.png) | ![Typed Mode](screenshots/final_textwritten_view.png) | ![Question Paper Photo Modal](screenshots/midterm_photo_modal_view.png) |
+| ![Grid Cards](screenshots/paper2_grid_view.png) | ![Paper 2 Text Written](screenshots/paper2_textwritten_view.png) | ![Tables and Code](screenshots/paper2_tables_code_view.png) |
+
+### ✍️ Authentic Handwritten Mid-Term Answer Script
+| Ruled Handwritten Answer Script | Question Paper Photo (Enhanced Scan) |
+| :---: | :---: |
+| ![Handwritten Answer Script](screenshots/final_handwritten_tables_view.png) | ![Question Paper Photo Modal](screenshots/midterm_photo_modal_view.png) |
 
 ### 💻 Desktop Portal View
 | Dashboard & Unit Overview | Interactive Side Panel Reader |
@@ -55,6 +60,37 @@ The Mid-Term Examination Paper is rendered in a **continuous handwritten examina
     - **Q7 [5M, CO3]:** Importance of Data Types and Type Conversion (classification, type promotion hierarchy ladder, explicit typecasting syntax & precision safety).
   - **SECTION C (7 Marks):**
     - **Q8 [7M, CO2]:** Full menu-driven banking C application starting with ₹10,000 balance (`1. Check Balance`, `2. Deposit`, `3. Withdraw`, `4. Exit`), switch statement, overdraft protection, input validation, and execution transcript.
+
+---
+
+## 🏛️ Manipal University Jaipur Make-Up Examination Paper (Jan 2024, 80 Marks)
+
+Complete, highly structured, analytical solutions to all **14 questions across Sections A, B, C, and D** (Course Code: **CA6105**, Master of Computer Applications):
+
+- **Default Clean Text Written Presentation**:
+  - Rendered in a clean, professional, high-contrast academic format with modern typography (`mode-typed`), clear markdown tables, step-by-step trace matrices, and dark VS Code-style syntax-highlighted code blocks.
+  - Quick paper switcher tabs allow seamless toggling between **Paper 1 (30M)** and **Paper 2 (80M)**.
+  - Dedicated controls: `📥 Download Paper` (A4 PDF print), `🖨️ Text Written`, `✍️ Handwritten`, `📷 Paper Photo` (high-res official question paper scan).
+
+- **Complete Solved Sections (80 Marks Total)**:
+  - **SECTION A (5 Questions &times; 2 Marks = 10 Marks):**
+    - **Q A1 [2M, CO3]:** Definition of Array (derived, homogeneous, contiguous linear data structure, memory address calculation formula).
+    - **Q A2 [2M, CO1]:** 5 Essential Requirements of an Algorithm (Finiteness, Definiteness, Input, Output, Effectiveness).
+    - **Q A3 [2M, CO1]:** Variables vs. Identifiers 6-point comparison table.
+    - **Q A4 [2M, CO2]:** General Syntax of `switch-case` statement, control flow logic, and 5 core compiler execution rules.
+    - **Q A5 [2M, CO4]:** Dynamic Memory Allocation Functions in `<stdlib.h>` (`malloc`, `calloc`, `realloc`, `free`), function prototypes, and allocation failure handling.
+  - **SECTION B (5 Questions &times; 6 Marks = 30 Marks):**
+    - **Q B1 [6M, CO2]:** Role of `while` loop & complete C program to reverse a given integer with step-by-step loop trace table for input `12345`.
+    - **Q B2 [6M, CO2]:** Exhaustive breakdown of Logical (`&&`, `||`, `!`) and Relational (`<`, `<=`, `>`, `>=`, `==`, `!=`) operators with short-circuit evaluation rules and truth tables.
+    - **Q B3 [6M, CO4]:** Complete recursive C program to display first $N$ terms of the Fibonacci sequence with recurrence relation, call stack tree diagram, and trace table.
+    - **Q B4 [6M, CO3]:** Program to compute the sum of all elements of an integer array with accumulator execution trace table.
+    - **Q B5 [6M, CO4]:** Pointers definition, declaration syntax, dereference operator (`*`), and complete program to input and display array elements using pointer arithmetic (`*(ptr + i)`).
+  - **SECTION C (2 Questions &times; 10 Marks = 20 Marks):**
+    - **Q C1 [10M, CO4]:** 6 Major Advantages of User-Defined Functions & complete modular interactive Arithmetic Calculator program with 4 distinct functions (`add`, `subtract`, `multiply`, `divide`).
+    - **Q C2 [10M, CO2]:** Conditional Statements in C (`if`, `if-else`, `else-if ladder`, `nested if`, `switch`, ternary) & complete C program to find the largest among three numbers using compound logical operators (`&&`).
+  - **SECTION D (2 Questions &times; 10 Marks = 20 Marks):**
+    - **Q D1 [10M, CO4]:** Call by Value vs. Call by Reference 6-point comparison table & complete C program to swap two numbers using call by reference with memory address trace table.
+    - **Q D2 [10M, CO2]:** Comprehensive explanation of all 6 Bitwise Operators (`&`, `|`, `^`, `~`, `<<`, `>>`) with 8-bit binary helper function, full demonstration C program, and bitwise evaluation trace table.
 
 ---
 

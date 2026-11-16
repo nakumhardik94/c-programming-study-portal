@@ -2565,11 +2565,16 @@
   <div class="reference-modal-backdrop" id="midterm-photo-modal" onclick="closeModalOnBackdrop(event, 'midterm-photo-modal')">
     <div class="reference-modal-window" style="max-width: 900px; max-height: 92vh; display: flex; flex-direction: column;">
       <div class="reference-modal-header">
-        <h3>Original Question Paper — Manipal University Jaipur (CAP6105)</h3>
+        <h3 id="photo-modal-title">Original Question Paper — Manipal University Jaipur</h3>
         <button class="close-modal-x" onclick="closeReferenceModal('midterm-photo-modal')">&times;</button>
       </div>
       <div class="reference-modal-body" style="overflow-y: auto; text-align: center; padding: 1rem; flex: 1;">
-        <img src="assets/midterm_question_paper.jpg" alt="Original Question Paper Full Size" style="max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
+        <div style="margin-bottom: 0.75rem;">
+          <a id="photo-modal-download" href="assets/paper2_question_paper.jpg" download class="btn-paper-action" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+            <span>📥</span> Download Full-Resolution Question Paper
+          </a>
+        </div>
+        <img id="photo-modal-img" src="assets/paper2_question_paper.jpg" alt="Original Question Paper Full Size" style="max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
       </div>
     </div>
   </div>
@@ -2591,6 +2596,7 @@
   <script src="content_units_11_15.js"></script>
   <script src="content_programs.js"></script>
   <script src="content_midterm.js"></script>
+  <script src="content_exam_paper2.js"></script>
 
   <!-- Interactive Logic -->
   <script>
@@ -2717,16 +2723,27 @@
       if (!container) return;
       container.innerHTML = "";
 
-      // ─── Mid-Term Examination Paper Card (Placed Immediately Before Unit 1 - Requirement 4) ───
-      const midTermCard = document.createElement("div");
-      midTermCard.className = "unit-card";
-      midTermCard.id = "card-midterm";
-      midTermCard.innerHTML = `
-        <div class="unit-card-box" onclick="openMidTermSidePanel()">
-          <h2 class="unit-card-title">MID-TERM EXAMINATION PAPER</h2>
+      // ─── Paper 1: Mid-Term Examination Paper (30 Marks) ───
+      const paper1Card = document.createElement("div");
+      paper1Card.className = "unit-card";
+      paper1Card.id = "card-paper1";
+      paper1Card.innerHTML = `
+        <div class="unit-card-box" onclick="openExamPaperSidePanel('paper1')">
+          <h2 class="unit-card-title">PAPER 1: MID-TERM EXAM (30M)</h2>
         </div>
       `;
-      container.appendChild(midTermCard);
+      container.appendChild(paper1Card);
+
+      // ─── Paper 2: University Make-Up Examination Paper (80 Marks) ───
+      const paper2Card = document.createElement("div");
+      paper2Card.className = "unit-card";
+      paper2Card.id = "card-paper2";
+      paper2Card.innerHTML = `
+        <div class="unit-card-box" onclick="openExamPaperSidePanel('paper2')">
+          <h2 class="unit-card-title">PAPER 2: UNIVERSITY MAKE-UP EXAM (80M)</h2>
+        </div>
+      `;
+      container.appendChild(paper2Card);
 
       // ─── All 15 Syllabus Unit Cards ───
       ALL_UNITS.forEach((unit, idx) => {
@@ -2745,8 +2762,9 @@
       });
     }
 
-    // ─── Mid-Term Section State & Renderers ───
-    let currentPaperStyleMode = 'handwritten';
+    // ─── Examination Papers (Paper 1 & Paper 2) State & Renderers ───
+    let currentOpenPaper = 'paper2'; // Default to newly added 80M Paper 2 or Paper 1
+    let currentPaperStyleMode = 'typed'; // Default to clean professional Text Written mode per user instruction
 
     function setPaperStyleMode(mode) {
       currentPaperStyleMode = mode;
@@ -2768,7 +2786,28 @@
       }
     }
 
+    function switchExamPaper(paperId) {
+      currentOpenPaper = paperId;
+      openExamPaperSidePanel(paperId);
+    }
+
     function openPhotoModal() {
+      const modal = document.getElementById('midterm-photo-modal');
+      const titleEl = document.getElementById('photo-modal-title');
+      const imgEl = document.getElementById('photo-modal-img');
+      const dlLink = document.getElementById('photo-modal-download');
+      
+      const isP1 = currentOpenPaper === 'paper1' || currentOpenPaper === 'midterm';
+      const photoSrc = isP1 ? 'assets/midterm_question_paper.jpg' : 'assets/paper2_question_paper.jpg';
+      const paperName = isP1 ? 'Paper 1 (Mid-Term Jul-Nov 2026, 30M)' : 'Paper 2 (University Make-Up Jan 2024, 80M)';
+      
+      if (titleEl) titleEl.textContent = `Original Question Paper — ${paperName}`;
+      if (imgEl) imgEl.src = photoSrc;
+      if (dlLink) {
+        dlLink.href = photoSrc;
+        dlLink.download = isP1 ? 'Manipal_CAP6105_MidTerm_Paper.jpg' : 'Manipal_CA6105_MakeUpExam2024_Paper.jpg';
+      }
+
       openReferenceModal('midterm-photo-modal');
     }
 
@@ -2777,54 +2816,45 @@
     }
 
     function downloadSolvedPaperMD() {
-      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
-      const mdContent = (data && data.examInfo && data.examInfo.rawMarkdown) ? data.examInfo.rawMarkdown : "";
+      const isP1 = currentOpenPaper === 'paper1' || currentOpenPaper === 'midterm';
+      let mdContent = "";
+      let filename = "";
+
+      if (isP1) {
+        const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
+        mdContent = (data && data.examInfo && data.examInfo.rawMarkdown) ? data.examInfo.rawMarkdown : "";
+        filename = "Manipal_CAP6105_MidTerm_Solved_Paper.md";
+      } else {
+        filename = "Manipal_CA6105_MakeUpExam2024_Solved_Paper.md";
+        const data = typeof EXAM_PAPER_2_DATA !== "undefined" ? EXAM_PAPER_2_DATA : null;
+        if (data) {
+          const info = data.examInfo;
+          mdContent = `# ${info.institution}\n## ${info.session}\n### ${info.department} - ${info.program}\n\n`;
+          data.sections.forEach(sec => {
+            mdContent += `## ${sec.name} (${sec.totalMarks} Marks)\n\n`;
+            sec.questions.forEach(q => {
+              mdContent += `### ${q.num} [${q.marks}M, ${q.co}]\n**Q:** ${q.q}\n\n**Ans:**\n${q.a}\n\n---\n\n`;
+            });
+          });
+        }
+      }
+
       const blob = new Blob([mdContent], { type: "text/markdown;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "Manipal_CAP6105_MidTerm_Solved_Paper.md";
+      a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     }
 
-    function downloadSolvedPaperText() {
-      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
-      const mdContent = (data && data.examInfo && data.examInfo.rawMarkdown) ? data.examInfo.rawMarkdown : "";
-      const blob = new Blob([mdContent], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Manipal_CAP6105_MidTerm_Solved_Paper.txt";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    function copyRawMidtermSolutions(btn) {
-      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
-      if (!data || !data.examInfo || !data.examInfo.rawMarkdown) return;
-
-      navigator.clipboard.writeText(data.examInfo.rawMarkdown).then(() => {
-        const orig = btn.innerHTML;
-        btn.innerHTML = `<span>✓</span> Copied All!`;
-        btn.classList.add("copied");
-        setTimeout(() => {
-          btn.innerHTML = orig;
-          btn.classList.remove("copied");
-        }, 2200);
-      }).catch(err => {
-        console.error("Copy error:", err);
-      });
-    }
-
-    // ─── Open Mid-Term Examination Paper in Side Panel ───
-    function openMidTermSidePanel() {
-      currentOpenUnitId = "midterm";
-      currentPanelSection = "midterm";
+    // ─── Open Examination Paper in Side Panel ───
+    function openExamPaperSidePanel(paperId = 'paper2') {
+      currentOpenPaper = paperId;
+      currentOpenUnitId = paperId;
+      currentPanelSection = "exam-paper";
 
       const panel = document.getElementById("unit-side-panel");
       const overlay = document.getElementById("panel-overlay");
@@ -2837,48 +2867,72 @@
 
       // Highlight active card
       document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));
-      const activeCard = document.getElementById("card-midterm");
+      const activeCard = document.getElementById(`card-${paperId}`) || document.getElementById("card-midterm");
       if (activeCard) activeCard.classList.add("active-open");
 
       // Set Title
       const titleEl = document.getElementById("panel-unit-title");
-      if (titleEl) titleEl.textContent = "Mid-Term Examination Paper";
+      if (titleEl) {
+        titleEl.textContent = (paperId === 'paper1' || paperId === 'midterm') 
+          ? "Paper 1: Mid-Term Examination (30M)" 
+          : "Paper 2: University Make-Up Exam (80M)";
+      }
 
-      // Hide unit tabs bar for mid-term section
+      // Hide unit tabs bar for exam papers
       if (tabsBar) tabsBar.style.display = "none";
 
-      renderMidTermContent();
+      renderExamPaperContent();
 
       panel.classList.add("open");
       if (overlay) overlay.classList.add("open");
       document.body.style.overflow = "hidden";
     }
 
-    function renderMidTermContent() {
+    // Backwards-compatible alias for existing triggers
+    function openMidTermSidePanel() {
+      openExamPaperSidePanel('paper1');
+    }
+
+    function renderExamPaperContent() {
       const body = document.getElementById("panel-scroll-body");
       if (!body) return;
 
-      const data = typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null;
+      const isP1 = (currentOpenPaper === 'paper1' || currentOpenPaper === 'midterm');
+      const data = isP1 
+        ? (typeof MIDTERM_EXAM_DATA !== "undefined" ? MIDTERM_EXAM_DATA : null)
+        : (typeof EXAM_PAPER_2_DATA !== "undefined" ? EXAM_PAPER_2_DATA : null);
+
       if (!data) {
-        body.innerHTML = `<div style="padding: 2rem; color: var(--panel-text-muted);">Mid-term data loading...</div>`;
+        body.innerHTML = `<div style="padding: 2rem; color: var(--panel-text-muted);">Examination data loading...</div>`;
         return;
       }
 
       const info = data.examInfo;
       let html = `<div class="handwritten-container">`;
 
-      // 1. Download & Action Toolbar
+      // 1. Paper Selector Pill + Download & View Actions Toolbar
       html += `
+        <!-- Paper Switcher Tabs -->
+        <div style="display: flex; gap: 0.5rem; align-items: center; justify-content: flex-start; margin-bottom: 0.25rem; flex-wrap: wrap;">
+          <button class="btn-paper-action ${isP1 ? 'active' : ''}" onclick="switchExamPaper('paper1')" style="font-size: 0.8rem; padding: 0.45rem 0.9rem;">
+            <span>📄</span> PAPER 1 (MID-TERM • 30M)
+          </button>
+          <button class="btn-paper-action ${!isP1 ? 'active' : ''}" onclick="switchExamPaper('paper2')" style="font-size: 0.8rem; padding: 0.45rem 0.9rem;">
+            <span>📜</span> PAPER 2 (MAKE-UP EXAM • 80M)
+          </button>
+        </div>
+
+        <!-- Action Toolbar with 4 Core Controls -->
         <div class="handwritten-toolbar">
           <div class="handwritten-toolbar-left" style="display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap;">
             <button class="btn-download-primary" onclick="downloadSolvedPaperPDF()" title="Download / Save complete solved paper as PDF">
               <span>📥</span> Download Paper
             </button>
+            <button id="btn-mode-typed" class="btn-paper-action ${currentPaperStyleMode === 'typed' ? 'active' : ''}" onclick="setPaperStyleMode('typed')" title="Clean Text Written / Typed Mode (Recommended)">
+              <span>🖨️</span> Text Written
+            </button>
             <button id="btn-mode-handwritten" class="btn-paper-action ${currentPaperStyleMode === 'handwritten' ? 'active' : ''}" onclick="setPaperStyleMode('handwritten')" title="Switch to Handwritten Exam Paper style">
               <span>✍️</span> Handwritten
-            </button>
-            <button id="btn-mode-typed" class="btn-paper-action ${currentPaperStyleMode === 'typed' ? 'active' : ''}" onclick="setPaperStyleMode('typed')" title="Switch to Clean Text Written / Typed style">
-              <span>🖨️</span> Text Written
             </button>
             <button class="btn-paper-action" onclick="openPhotoModal()" title="View cropped &amp; enhanced scan of original question paper">
               <span>📷</span> Paper Photo
@@ -2887,20 +2941,22 @@
         </div>
       `;
 
-      // 2. The Continuous Ruled Examination Answer Sheet
+      // 2. The Examination Paper Sheet (mode-typed by default, can toggle to mode-handwritten)
       html += `
         <div id="midterm-paper-sheet" class="paper-sheet mode-${currentPaperStyleMode}">
-          <!-- Answer Booklet Header Card -->
+          <!-- Official University Header Box -->
           <div class="booklet-header">
             <div class="booklet-title">🏛️ ${escapeHtml(info.institution)}</div>
             <div class="booklet-sub">
-              ${escapeHtml(info.session)} &bull; ${escapeHtml(info.school)} &bull; ${escapeHtml(info.department)}<br>
-              <strong>${escapeHtml(info.program)}</strong> &bull; Course: <strong>${escapeHtml(info.courseTitle)} (${escapeHtml(info.courseCode)})</strong> &bull; Semester: I
+              ${escapeHtml(info.session)} &bull; ${escapeHtml(info.faculty || info.school || '')} &bull; ${escapeHtml(info.department)}<br>
+              <strong>${escapeHtml(info.program)}</strong> &bull; Course: <strong>${escapeHtml(info.courseTitle)} (${escapeHtml(info.courseCode)})</strong> &bull; ${escapeHtml(info.semester || 'Semester: I')}
             </div>
 
             <div class="booklet-info-grid">
-              <div><strong>Candidate Name:</strong> ${escapeHtml(info.studentName)}</div>
-              <div><strong>Registration No:</strong> ${escapeHtml(info.regNo)}</div>
+              ${isP1 ? `<div><strong>Candidate Name:</strong> ${escapeHtml(info.studentName || 'Hardik Nakum')}</div>
+                        <div><strong>Registration No:</strong> ${escapeHtml(info.regNo || '2602030097')}</div>` 
+                     : `<div><strong>Examination:</strong> Make-Up Exam (Jan 2024)</div>
+                        <div><strong>Degree / Department:</strong> MCA / Computer Applications</div>`}
               <div><strong>Maximum Marks:</strong> ${info.maxMarks} Marks</div>
               <div><strong>Allotted Time:</strong> ${escapeHtml(info.time)}</div>
             </div>
@@ -2911,7 +2967,7 @@
           </div>
       `;
 
-      // 3. Continuous Sections & Questions (Unbroken flow - NOT separated accordions)
+      // 3. Continuous Sections & Questions (Unbroken flow with clean tables & code)
       data.sections.forEach(sec => {
         html += `
           <div class="booklet-section-banner">
@@ -2921,16 +2977,16 @@
         `;
 
         sec.questions.forEach(q => {
-          const ansNumber = q.num.replace(/^Q/i, '');
+          const ansNumber = q.num.replace(/^Q\s*/i, '');
           const firstLine = q.q.split('\n')[0];
           html += `
-            <div class="booklet-qa-entry" id="entry-${sec.id}-${q.num}">
+            <div class="booklet-qa-entry" id="entry-${sec.id}-${q.num.replace(/\s+/g, '-')}">
               <div class="booklet-q-header">
                 <span class="margin-q-tag">Ans ${escapeHtml(ansNumber)}.</span>
                 <span class="booklet-q-title">${escapeHtml(firstLine)}</span>
                 <span class="booklet-marks-tag">${q.marks} Marks &bull; ${escapeHtml(q.co)}</span>
               </div>
-              ${q.q.includes('\n```') ? `<div style="margin: 0.5rem 0 0.85rem 0;"><strong>Question Code:</strong>${formatAnswer(q.q.substring(q.q.indexOf('\n')))}</div>` : ''}
+              ${q.q.includes('\n') ? `<div style="margin: 0.5rem 0 0.85rem 0; font-size: 0.92rem;">${formatAnswer(q.q.substring(q.q.indexOf('\n') + 1))}</div>` : ''}
               <div class="booklet-ans-body">
                 ${formatAnswer(q.a)}
               </div>
@@ -2942,7 +2998,7 @@
       // 4. Script Completion Stamp
       html += `
           <div style="text-align: center; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 2px dashed rgba(15, 44, 89, 0.35); font-weight: 800; letter-spacing: 0.08em; opacity: 0.85; font-size: 0.95rem;">
-            ✍️ ~ ~ ~ END OF MID-TERM EXAMINATION ANSWER SCRIPT (30 / 30 MARKS) ~ ~ ~
+            🏛️ ~ ~ ~ END OF EXAMINATION ANSWER SCRIPT (${info.maxMarks} / ${info.maxMarks} MARKS) ~ ~ ~
           </div>
         </div>
       </div>`;
@@ -2951,6 +3007,9 @@
       body.scrollTop = 0;
     }
 
+    function renderMidTermContent() {
+      renderExamPaperContent();
+    }
 
     // ─── Open Unit in Side Panel ───
     function openUnitSidePanel(unitId, section = 'theory') {
@@ -3232,6 +3291,7 @@
             s = escapeHtml(s);
             s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
             s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+            s = s.replace(/&amp;(rarr|larr|le|ge|ne|bull|times|oplus|mid);/gi, '&$1;');
             s = s.replace(/___LINEBREAK___/g, '<br>');
             return s;
           }
@@ -3257,24 +3317,30 @@
         return match;
       });
 
-      // 3. Escape narrative text
+      // 3. Convert bullet points: replace leading `* ` with bullet symbol
+      processed = processed.replace(/^[ \t]*\*[ \t]+/gm, "&bull; ");
+
+      // 4. Escape narrative text
       processed = escapeHtml(processed);
 
-      // 4. Bold formatting **text**
+      // 5. Bold formatting **text**
       processed = processed.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 
-      // 5. Format line breaks
+      // 6. Unescape safe symbols and bullets
+      processed = processed.replace(/&amp;(rarr|larr|le|ge|ne|bull|times|oplus|mid);/gi, '&$1;');
+
+      // 7. Format line breaks
       processed = processed.replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
 
-      // 6. Inline `code`
+      // 8. Inline `code`
       processed = processed.replace(/`([^`]+)`/g, "<code>$1</code>");
 
-      // 7. Re-inject Markdown Tables
+      // 9. Re-inject Markdown Tables
       tableBlocks.forEach((tbl, idx) => {
         processed = processed.replace(`___TABLE_BLOCK_${idx}___`, tbl);
       });
 
-      // 8. Re-inject clear code writeup with syntax highlighting, line numbers, and copy button
+      // 10. Re-inject clear code writeup with syntax highlighting, line numbers, and copy button
       codeBlocks.forEach((code, idx) => {
         const snippetId = `snippet_${idx}_` + Math.random().toString(36).substr(2, 6);
         THEORY_CODE_SNIPPETS[snippetId] = code;
