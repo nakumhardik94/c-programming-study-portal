@@ -63,7 +63,7 @@ The Mid-Term Examination Paper is rendered in a **continuous handwritten examina
 
 ---
 
-## 🏛️ Manipal University Jaipur Make-Up Examination Paper (Jan 2024, 80 Marks)
+## 🏛️ Manipal University Jaipur End Term Examination Paper (Jan 2024, 80 Marks)
 
 Complete, highly structured, analytical solutions to all **14 questions across Sections A, B, C, and D** (Course Code: **CA6105**, Master of Computer Applications):
 

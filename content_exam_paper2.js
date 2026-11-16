@@ -1,17 +1,17 @@
 // ============================================================================
-// MANIPAL UNIVERSITY JAIPUR - UNIVERSITY MAKE-UP EXAMINATION PAPER (JAN 2024)
+// MANIPAL UNIVERSITY JAIPUR - UNIVERSITY END TERM EXAMINATION PAPER (JAN 2024)
 // Course: Programming and Problem-Solving Using C (CA6105) | Max Marks: 80
 // ============================================================================
 
 const EXAM_PAPER_2_DATA = {
     "examInfo": {
         "id": "paper2",
-        "title": "University Make-Up Examination Paper (80 Marks)",
+        "title": "University End Term Examination Paper (80 Marks)",
         "institution": "Manipal University Jaipur",
         "faculty": "Faculty of Science, School of Basic Sciences",
         "department": "Department of Computer Applications",
         "program": "Master of Computer Applications (MCA)",
-        "session": "Odd Semester Make Up Examination, January 2024",
+        "session": "Odd Semester End Term Examination, January 2024",
         "courseCode": "CA6105",
         "courseTitle": "Programming and Problem-Solving Using C",
         "semester": "Semester: I",

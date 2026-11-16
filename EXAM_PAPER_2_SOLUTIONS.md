@@ -1,5 +1,5 @@
 # Manipal University Jaipur
-## Odd Semester Make Up Examination, January 2024
+## Odd Semester End Term Examination, January 2024
 ### Faculty of Science, School of Basic Sciences • Department of Computer Applications
 **Program:** Master of Computer Applications (MCA) | **Semester:** Semester: I  
 **Course Code:** CA6105 | **Course Title:** Programming and Problem-Solving Using C  
