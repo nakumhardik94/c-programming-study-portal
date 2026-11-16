@@ -11,7 +11,7 @@
 ### ✍️ Solved Mid-Term Examination Paper (Continuous Handwritten Answer Script Format)
 | Authentic Ruled Handwritten Script | Clean Typed Examination Mode | Original Question Paper Photo (Enhanced Scan) |
 | :---: | :---: | :---: |
-| ![Handwritten Answer Script](screenshots/midterm_handwritten_solved_paper.png) | ![Typed Mode](screenshots/midterm_typed_solved_paper.png) | ![Question Paper Photo Modal](screenshots/midterm_photo_modal_view.png) |
+| ![Handwritten Answer Script](screenshots/midterm_only_download_options.png) | ![Typed Mode](screenshots/midterm_typed_solved_paper.png) | ![Question Paper Photo Modal](screenshots/midterm_photo_modal_view.png) |
 
 ### 💻 Desktop Portal View
 | Dashboard & Unit Overview | Interactive Side Panel Reader |

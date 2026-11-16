@@ -2849,8 +2849,8 @@
       html += `
         <div class="handwritten-toolbar">
           <div class="handwritten-toolbar-left">
-            <button class="btn-download-primary" onclick="downloadSolvedPaperPDF()" title="Print / Save complete paper as PDF">
-              <span>📥</span> Download PDF (Print)
+            <button class="btn-download-primary" onclick="downloadSolvedPaperPDF()" title="Download complete solved paper as PDF">
+              <span>📥</span> Download Solved Paper (PDF)
             </button>
             <button class="btn-paper-action" onclick="downloadSolvedPaperMD()" title="Download raw Markdown format file">
               <span>📄</span> Download .md
@@ -2858,29 +2858,13 @@
             <button class="btn-paper-action" onclick="downloadSolvedPaperText()" title="Download plain text file">
               <span>📝</span> Download .txt
             </button>
-            <button class="btn-paper-action" onclick="copyRawMidtermSolutions(this)" title="Copy entire raw solved answer script to clipboard">
-              <span>📋</span> Copy All
-            </button>
-            <button class="btn-paper-action" onclick="openPhotoModal()" title="View cropped &amp; enhanced scan of original question paper">
-              <span>📷</span> Question Paper Photo
-            </button>
-          </div>
-          <div class="handwritten-toolbar-right">
-            <div class="style-toggle-pill" title="Toggle visual writing presentation">
-              <button id="style-toggle-handwritten" class="style-toggle-btn ${currentPaperStyleMode === 'handwritten' ? 'active' : ''}" onclick="setPaperStyleMode('handwritten')">
-                ✍️ Handwritten Paper
-              </button>
-              <button id="style-toggle-typed" class="style-toggle-btn ${currentPaperStyleMode === 'typed' ? 'active' : ''}" onclick="setPaperStyleMode('typed')">
-                🖨️ Typed
-              </button>
-            </div>
           </div>
         </div>
       `;
 
       // 2. The Continuous Ruled Examination Answer Sheet
       html += `
-        <div id="midterm-paper-sheet" class="paper-sheet mode-${currentPaperStyleMode}">
+        <div id="midterm-paper-sheet" class="paper-sheet mode-handwritten">
           <!-- Answer Booklet Header Card -->
           <div class="booklet-header">
             <div class="booklet-title">🏛️ ${escapeHtml(info.institution)}</div>
