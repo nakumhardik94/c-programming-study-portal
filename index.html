@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C PROGRAMMING (CAP6105) | University Study Portal</title>
+  <!-- Google Fonts: Montserrat (Header/Brand/Cards) & Inter (Body/Reading) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Reference Header Colors */
+      --header-bg: #000000;
+      --header-text: #ffffff;
+      --header-muted: #9ca3af;
+      --cyan-accent: #00d2d3;
+      --cyan-bright: #00ffff;
+      
+      /* Card & Reading Surface Colors */
+      --card-bg: rgba(13, 23, 35, 0.92);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --card-border-hover: rgba(0, 210, 211, 0.6);
+      --inner-card-bg: #0d1624;
+      --inner-card-border: #1e293b;
+      --ans-bg: #090f1a;
+      
+      --text-main: #ffffff;
+      --text-body: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      /* VS Code Dark+ Theme */
+      --vscode-bg: #1e1e1e;
+      --vscode-tab-bg: #252526;
+      --vscode-gutter: #858585;
+      --vscode-border: #2d2d2d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── REFERENCE SITE BACKGROUND: SMOOTH TEAL GRADIENT ─── */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #4ea5b5 0%, #2e7d8d 35%, #1b525e 70%, #0f323a 100%);
+      background-attachment: fixed;
+      color: var(--text-body);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── 1. PITCH-BLACK TOP NAVIGATION BAR (Exact Reference Look) ─── */
+    header.reference-header {
+      background-color: var(--header-bg);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Left bold brand name uppercase matching "DR" in reference */
+    .brand-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo span.code-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(0, 210, 211, 0.12);
+      color: var(--cyan-accent);
+      border: 1px solid rgba(0, 210, 211, 0.3);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Right navigation items (MUSIC, MERCH, SUBSCRIBE, TOUR style) */
+    nav.nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+    }
+
+    .nav-item {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--header-muted);
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      padding: 0.4rem 0;
+      transition: color 0.2s ease;
+      background: transparent;
+      border: none;
+    }
+
+    .nav-item:hover {
+      color: #ffffff;
+    }
+
+    /* Active link with solid Cyan Underline like "MUSIC" in reference */
+    .nav-item.active {
+      color: #ffffff;
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background-color: var(--cyan-accent);
+      border-radius: 2px;
+    }
+
+    /* ─── HERO HEADER BANNER (Clean & Simple) ─── */
+    .hero-banner-strip {
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero-banner-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-banner-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-banner-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-badges-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge-pill {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: #ffffff;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-badge-pill strong {
+      color: var(--cyan-bright);
+    }
+
+    /* ─── 3. 3-COLUMN UNIT CARDS GRID (Main Page Stays Visible) ─── */
+    .portal-main-container {
+      max-width: 1360px;
+      margin: 1.5rem auto 4rem;
+      padding: 0 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .units-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    /* Individual Unit Card Box */
+    .unit-card {
+      background: rgba(10, 26, 32, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .unit-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan-accent);
+      background: rgba(13, 34, 42, 0.9);
+    }
+
+    /* Active Highlight when this unit is currently open in the side panel */
+    .unit-card.active-open {
+      border-color: var(--cyan-accent);
+      background: rgba(14, 165, 233, 0.22);
+      box-shadow: 0 0 0 2px var(--cyan-accent), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Card Face: ONLY the Unit Name */
+    .unit-card-box {
+      padding: 2.2rem 1.75rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 120px;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Unit Card Title - Clean All-Caps Montserrat */
+    .unit-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.14rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1.4;
+      margin: 0;
+      transition: color 0.2s ease;
+    }
+
+    .unit-card:hover .unit-card-title,
+    .unit-card.active-open .unit-card-title {
+      color: var(--cyan-bright);
+    }
+
+    /* ─── 4. SIDE PANEL & BACKDROP OVERLAY ─── */
+    .unit-panel-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .unit-panel-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Side Panel Container */
+    .unit-side-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(880px, 92vw);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      background: var(--panel-bg);
+      color: var(--panel-text);
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.45);
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .unit-side-panel.open {
+      transform: translateX(0);
+    }
+
+    /* Theme 1: Clean White Reading Background (Default) */
+    .unit-side-panel.theme-light {
+      --panel-bg: #ffffff;
+      --panel-text: #0f172a;
+      --panel-text-muted: #64748b;
+      --panel-border: #e2e8f0;
+
+      --btn-bg: #f8fafc;
+      --btn-text: #0f172a;
+      --btn-border: #cbd5e1;
+
+      --tab-bg: #f1f5f9;
+      --tab-text: #334155;
+      --tab-border: #cbd5e1;
+      --tab-active-bg: #0284c7;
+      --tab-active-text: #ffffff;
+      --tab-active-border: #0284c7;
+
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --card-title: #0f172a;
+      --card-badge-bg: #e0f2fe;
+      --card-badge-color: #0284c7;
+      --card-badge-border: #bae6fd;
+
+      --ans-bg: #ffffff;
+      --ans-border: #e2e8f0;
+      --ans-accent: #0284c7;
+      --ans-text: #1e293b;
+      --ans-strong: #0369a1;
+      --ans-code-bg: #f1f5f9;
+      --ans-code-text: #0f172a;
+      --ans-pre-bg: #1e293b;
+      --ans-pre-text: #38bdf8;
+    }
+
+    /* Theme 2: Black Reading Background */
+    .unit-side-panel.theme-dark {
+      --panel-bg: #0b1a20;
+      --panel-text: #f8fafc;
+      --panel-text-muted: #94a3b8;
+      --panel-border: rgba(255, 255, 255, 0.12);
+
+      --btn-bg: rgba(255, 255, 255, 0.08);
+      --btn-text: #ffffff;
+      --btn-border: rgba(255, 255, 255, 0.18);
+
+      --tab-bg: rgba(255, 255, 255, 0.06);
+      --tab-text: #cbd5e1;
+      --tab-border: rgba(255, 255, 255, 0.14);
+      --tab-active-bg: #00d2d3;
+      --tab-active-text: #000000;
+      --tab-active-border: #00d2d3;
+
+      --card-bg: #14252e;
+      --card-border: rgba(255, 255, 255, 0.12);
+      --card-title: #ffffff;
+      --card-badge-bg: rgba(0, 210, 211, 0.15);
+      --card-badge-color: #00d2d3;
+      --card-badge-border: rgba(0, 210, 211, 0.35);
+
+      --ans-bg: #0e1e26;
+      --ans-border: rgba(255, 255, 255, 0.08);
+      --ans-accent: #00d2d3;
+      --ans-text: #cbd5e1;
+      --ans-strong: #00d2d3;
+      --ans-code-bg: rgba(0, 210, 211, 0.12);
+      --ans-code-text: #00d2d3;
+      --ans-pre-bg: #000000;
+      --ans-pre-text: #38bdf8;
+    }
+
+    /* Fixed Panel Header */
+    .panel-header {
+      flex-shrink: 0;
+      padding: 1.25rem 1.75rem 0.85rem 1.75rem;
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--panel-border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .panel-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Back Button inside Panel */
+    .panel-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 0.45rem 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      transition: none; /* No hover animations */
+    }
+
+    .panel-back-btn:hover {
+      transform: none;
+    }
+
+    .panel-back-btn .back-arrow {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    /* Theme Switcher Toggle */
+    .panel-theme-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      padding: 0.2rem 0.35rem;
+      border-radius: 6px;
+    }
+
+    .theme-switcher-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--panel-text-muted);
+      margin-right: 0.15rem;
+      padding-left: 0.35rem;
+    }
+
+    .theme-toggle-btn {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--panel-text-muted);
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: none; /* No hover animations */
+    }
+
+    .theme-toggle-btn:hover {
+      transform: none;
+    }
+
+    .theme-toggle-btn.active {
+      background: var(--tab-active-bg);
+      color: var(--tab-active-text);
+      border-color: var(--tab-active-border);
+      font-weight: 700;
+    }
+
+    /* Panel Unit Title */
+    .panel-unit-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--panel-text);
+      line-height: 1.35;
+      margin: 0.25rem 0 0.85rem 0;
+    }
+
+    /* Resizer Drag Handle on Left Edge of Panel (Requirement 1) */
+    .panel-resizer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+      cursor: ew-resize;
+      z-index: 50;
+      background: transparent;
+      transition: background 0.15s ease;
+    }
+
+    .panel-resizer:hover,
+    .panel-resizer.is-resizing {
+      background: var(--ans-accent);
+    }
+
+    /* Navigation Option Tabs Bar (Header Navigation Style - Requirement 2) */
+    .panel-nav-tabs {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      border-bottom: 1px solid var(--panel-border);
+      margin-top: 0.85rem;
+      padding-bottom: 0;
+    }
+
+    .panel-nav-tab {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--panel-text-muted);
+      background: transparent;
+      border: none;
+      padding: 0.65rem 0;
+      cursor: pointer;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: color 0.2s ease;
+    }
+
+    .panel-nav-tab:hover {
+      color: var(--ans-accent);
+    }
+
+    .panel-nav-tab.active {
+      color: var(--ans-accent);
+    }
+
+    .panel-nav-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background: var(--ans-accent);
+    }
+
+    /* Scrollable Panel Body */
+    .panel-scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 1.75rem 3.5rem 1.75rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Drawer Toolbar inside Content Body */
+    .drawer-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      background: var(--card-bg);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--panel-border);
+    }
+
+    .drawer-toolbar h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--panel-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    .drawer-toolbar h3 span.pip {
+      width: 7px;
+      height: 7px;
+      background: var(--ans-accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ─── DIRECT QUESTION LIST (Clean list, no boxes, no border clutter) ─── */
+    .qa-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .qa-card {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--panel-border);
+      border-radius: 0;
+      padding: 0.85rem 0;
+      transition: none;
+    }
+
+    .qa-card:last-child {
+      border-bottom: none;
+    }
+
+    .qa-card:hover {
+      border-color: var(--panel-border);
+    }
+
+    .qa-card.open {
+      border-color: var(--panel-border);
+      box-shadow: none;
+    }
+
+    .qa-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 0.25rem 0;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: inherit;
+    }
+
+    .qa-left {
+      display: flex;
+      align-items: baseline;
+      gap: 0.65rem;
+      flex: 1;
+    }
+
+    .qa-num-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--ans-accent);
+      background: transparent;
+      border: none;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .qa-text {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--panel-text);
+      line-height: 1.5;
+      transition: color 0.15s ease;
+    }
+
+    .qa-btn:hover .qa-text,
+    .qa-card.open .qa-text {
+      color: var(--ans-accent);
+    }
+
+    .qa-arrow {
+      color: var(--panel-text-muted);
+      font-size: 0.72rem;
+      margin-top: 0.25rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .qa-card.open .qa-arrow {
+      transform: rotate(180deg);
+      color: var(--ans-accent);
+    }
+
+    /* Direct Answer Expansion */
+    .qa-answer-drawer {
+      display: none;
+      padding: 0.75rem 0 0.5rem 1.4rem;
+    }
+
+    .qa-card.open .qa-answer-drawer {
+      display: block;
+    }
+
+    .qa-answer-box {
+      background: transparent;
+      border: none;
+      border-left: 2px solid var(--ans-accent);
+      padding: 0.25rem 0 0.25rem 1rem;
+      border-radius: 0;
+      color: var(--ans-text);
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+
+    .qa-answer-box strong {
+      color: var(--ans-strong);
+      display: inline-block;
+      margin-top: 0.45rem;
+      margin-bottom: 0.1rem;
+    }
+
+    /* Inline code only */
+    .qa-answer-box code:not(pre code) {
+      background: var(--ans-code-bg);
+      color: var(--ans-code-text);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', Consolas, monospace;
+      font-size: 0.88em;
+      border: 1px solid var(--ans-border);
+    }
+
+    /* ─── CLEAR CODE WRITEUP (Theory Answers - Clean, No Fake Windows, No White Splotches) ─── */
+    .code-writeup {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      margin: 0.85rem 0;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .code-writeup-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      padding: 0.35rem 0.85rem;
+      border-bottom: 1px solid #334155;
+    }
+
+    .code-writeup-badge {
+      font-family: 'Fira Code', Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .code-writeup-copy {
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+
+    .code-writeup-copy:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+    }
+
+    .code-writeup-copy.copied {
+      background: #059669;
+      color: #ffffff;
+      border-color: #059669;
+    }
+
+    .code-writeup-content {
+      display: flex;
+      background: #0f172a;
+      overflow-x: auto;
+      font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .code-writeup-gutter {
+      background: #0f172a;
+      color: #64748b;
+      padding: 0.75rem 0.65rem 0.75rem 0.85rem;
+      text-align: right;
+      user-select: none;
+      border-right: 1px solid #1e293b;
+      min-width: 38px;
+      white-space: pre;
+    }
+
+    .code-writeup-pre {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      background: transparent !important;
+      border: none !important;
+      color: #e2e8f0;
+      white-space: pre;
+      tab-size: 4;
+      flex: 1;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    /* Ensure code inside pre NEVER inherits white background/border badges */
+    .code-writeup-pre code,
+    .qa-answer-box pre code,
+    .vscode-code-content code {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      color: inherit !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      display: block !important;
+    }
+
+    /* ─── MID-TERM EXAMINATION SECTION STYLING ─── */
+    .midterm-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 0.5rem 0;
+    }
+
+    .midterm-banner-box {
+      background: var(--card-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .midterm-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ans-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .midterm-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--panel-text);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .midterm-desc {
+      font-size: 0.92rem;
+      color: var(--panel-text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .midterm-waiting-box {
+      background: var(--btn-bg);
+      border: 1px dashed var(--ans-accent);
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .midterm-waiting-icon {
+      font-size: 2.2rem;
+    }
+
+    .midterm-waiting-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--panel-text);
+      margin: 0;
+    }
+
+    .midterm-waiting-text {
+      font-size: 0.9rem;
+      color: var(--panel-text-muted);
+      max-width: 580px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .midterm-sections-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+    }
+
+    @media (max-width: 680px) {
+      .midterm-sections-preview {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .midterm-preview-card {
+      background: var(--card-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .midterm-preview-card h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--ans-accent);
+      text-transform: uppercase;
+      margin: 0 0 0.35rem 0;
+    }
+
+    .midterm-preview-card p {
+      font-size: 0.84rem;
+      color: var(--panel-text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ─── SYLLABUS SECTION ─── */
+    .syllabus-view {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .syllabus-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+    }
+
+    .syllabus-panel h4 {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--panel-text);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.65rem;
+    }
+
+    .concept-card {
+      background: var(--ans-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      font-size: 0.86rem;
+      color: var(--ans-text);
+    }
+
+    .concept-card span.bullet {
+      color: var(--ans-accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .checklist-ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .checklist-li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: var(--ans-text);
+      background: var(--ans-bg);
+      border: 1px solid var(--card-border);
+      padding: 0.65rem 0.9rem;
+      border-radius: 6px;
+    }
+
+    .check-ico {
+      color: #10b981;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ─── PRACTICALS & PROGRAMS SECTION ─── */
+    .practicals-view {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .practicals-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--ans-accent);
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+    }
+
+    .practicals-panel h4 {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--panel-text);
+      margin-bottom: 0.75rem;
+    }
+
+    .practicals-list {
+      list-style-type: decimal;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+      color: var(--ans-text);
+    }
+
+    .prog-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .prog-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .prog-header {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 0.85rem 1.15rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+      color: inherit;
+    }
+
+    .prog-title-grp {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .prog-num-pill {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .prog-name {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--panel-text);
+    }
+
+    .prog-cat-tag {
+      font-size: 0.72rem;
+      color: var(--panel-text-muted);
+      background: var(--btn-bg);
+      border: 1px solid var(--panel-border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 12px;
+    }
+
+    .prog-arrow {
+      color: var(--panel-text-muted);
+      font-size: 0.75rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .prog-card.open .prog-arrow {
+      transform: rotate(180deg);
+      color: var(--ans-accent);
+    }
+
+    .prog-drawer {
+      display: none;
+      padding: 0 1.15rem 1.15rem 1.15rem;
+    }
+
+    .prog-card.open .prog-drawer {
+      display: block;
+    }
+
+    /* ─── 5. VISUAL STUDIO CODE EDITOR (Exact VS Code Dark+ look) ─── */
+    .vscode-window {
+      background: var(--vscode-bg);
+      border: 1px solid var(--vscode-border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+    }
+
+    .vscode-title-bar {
+      background: var(--vscode-tab-bg);
+      border-bottom: 1px solid #191919;
+      height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0.75rem;
+      user-select: none;
+    }
+
+    .vscode-tabs-left {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      gap: 0.65rem;
+    }
+
+    .vscode-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .vscode-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .vscode-tab {
+      background: var(--vscode-bg);
+      color: #cccccc;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0 0.85rem;
+      font-size: 0.8rem;
+      border-top: 2px solid var(--cyan-accent);
+      border-right: 1px solid #1a1a1a;
+    }
+
+    .vscode-tab-icon {
+      color: #007acc;
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .vscode-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .vscode-lang-pill {
+      font-size: 0.7rem;
+      color: #858585;
+      background: #2d2d2d;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    .btn-vscode-copy {
+      background: #333333;
+      color: #d4d4d4;
+      border: 1px solid #3c3c3c;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-vscode-copy:hover {
+      background: #094771;
+      color: #ffffff;
+      border-color: #007acc;
+    }
+
+    .btn-vscode-copy.copied {
+      background: #107c41;
+      color: #ffffff;
+      border-color: #107c41;
+    }
+
+    .vscode-body {
+      display: flex;
+      background: var(--vscode-bg);
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .vscode-gutter {
+      background: var(--vscode-bg);
+      color: var(--vscode-gutter);
+      padding: 0.85rem 0.75rem 0.85rem 1rem;
+      text-align: right;
+      user-select: none;
+      border-right: 1px solid var(--vscode-border);
+      min-width: 48px;
+      white-space: pre;
+    }
+
+    .vscode-code-content {
+      padding: 0.85rem 1.25rem;
+      color: #d4d4d4;
+      white-space: pre;
+      tab-size: 4;
+      flex: 1;
+    }
+
+    /* VS Code Dark+ Syntax Colors */
+    .tok-preproc { color: #c586c0; font-weight: 600; }
+    .tok-control { color: #c586c0; font-weight: 600; }
+    .tok-type    { color: #569cd6; font-weight: 600; }
+    .tok-fn      { color: #dcdcaa; }
+    .tok-string  { color: #ce9178; }
+    .tok-char    { color: #ce9178; }
+    .tok-comment { color: #6a9955; }
+    .tok-num     { color: #b5cea8; }
+
+    /* ─── MODALS & FOOTER ─── */
+    .reference-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .reference-modal-backdrop.open {
+      display: flex;
+    }
+
+    .reference-modal-window {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .reference-modal-header {
+      background: #000000;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid #1f2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reference-modal-header h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .close-modal-x {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .close-modal-x:hover {
+      color: #ffffff;
+    }
+
+    .reference-modal-body {
+      padding: 1.5rem;
+    }
+
+    .about-para {
+      font-size: 0.94rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .dev-top-box {
+      margin-bottom: 1rem;
+    }
+
+    .dev-fullname {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .dev-title-role {
+      font-size: 0.85rem;
+      color: var(--cyan-accent);
+      font-weight: 600;
+      margin-top: 0.15rem;
+    }
+
+    .dev-intro-text {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .skills-header {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    .skills-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-badge-chip {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .dev-statement-box {
+      background: #0f172a;
+      border-left: 3px solid var(--cyan-accent);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.88rem;
+      color: #94a3b8;
+      border-radius: 0 6px 6px 0;
+    }
+
+    footer.reference-footer {
+      background: #000000;
+      color: #64748b;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.84rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: auto;
+    }
+
+    .footer-action-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-link-btn {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .footer-link-btn:hover {
+      color: var(--cyan-accent);
+    }
+
+    /* ─── 6. RESPONSIVE DESIGN ─── */
+    @media (max-width: 1100px) {
+      .units-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .units-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .header-container {
+        padding: 0 1.25rem;
+      }
+      nav.nav-links {
+        gap: 1.25rem;
+      }
+      .unit-options-bar {
+        flex-direction: column;
+      }
+      .unit-opt-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. PITCH-BLACK TOP NAVIGATION BAR (Exact reference look) -->
+  <header class="reference-header">
+    <div class="header-container">
+      <!-- Left Brand Name matching reference style -->
+      <a href="#unit1" class="brand-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        HARDIK NAKUM <span class="code-tag">CAP6105</span>
+      </a>
+
+      <!-- Right Navigation Links with Cyan active indicator -->
+      <nav class="nav-links">
+        <button class="nav-item active" id="nav-topics" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">SYLLABUS</button>
+        <button class="nav-item" id="nav-about" onclick="openReferenceModal('about-modal')">ABOUT</button>
+        <button class="nav-item" id="nav-dev" onclick="openReferenceModal('dev-modal')">DEVELOPER</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BANNER (Simple & Clean) -->
+  <div class="hero-banner-strip">
+    <div class="hero-banner-container">
+      <h1 class="hero-banner-title">PROGRAMMING &amp; PROBLEM-SOLVING USING C</h1>
+      <div class="hero-badges-row">
+        <div class="hero-badge-pill"><strong>15</strong> Syllabus Units</div>
+        <div class="hero-badge-pill"><strong id="stat-total-qa">695</strong> Exam Questions</div>
+        <div class="hero-badge-pill"><strong>65</strong> VS Code Programs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 3-COLUMN UNIT CARDS GRID (Matches Reference Album Grid) -->
+  <main class="portal-main-container">
+    <div class="units-grid" id="units-container">
+      <!-- Rendered dynamically: Unit 1 to Unit 15 -->
+    </div>
+  </main>
+
+  <!-- 4. SIDE PANEL & BACKDROP OVERLAY FOR UNIT CONTENT -->
+  <div class="unit-panel-overlay" id="panel-overlay" onclick="closeSidePanel()"></div>
+  <aside class="unit-side-panel theme-light" id="unit-side-panel" aria-label="Unit Content Reader">
+    <!-- Resizer Drag Handle on Left Edge (Requirement 1) -->
+    <div class="panel-resizer" id="panel-resizer" title="Drag edge to resize panel width"></div>
+
+    <!-- Panel Header: Back Button & Theme Switcher -->
+    <div class="panel-header">
+      <div class="panel-top-row">
+        <!-- Back Button -->
+        <button class="panel-back-btn" onclick="closeSidePanel()">
+          <span class="back-arrow">&larr;</span> Back to Units
+        </button>
+
+        <!-- Reading Background Mode Toggle (White vs Black) -->
+        <div class="panel-theme-switcher">
+          <span class="theme-switcher-label">Mode:</span>
+          <button class="theme-toggle-btn active" id="btn-theme-light" onclick="setPanelTheme('light')">White</button>
+          <button class="theme-toggle-btn" id="btn-theme-dark" onclick="setPanelTheme('dark')">Black</button>
+        </div>
+      </div>
+
+      <!-- Unit Title -->
+      <h2 class="panel-unit-title" id="panel-unit-title">Unit 1: Algorithm &amp; Flow Charts</h2>
+
+      <!-- Navigation Options (Theory, Practical, Code) - Header Style (Requirement 2) -->
+      <div class="panel-nav-tabs">
+        <button class="panel-nav-tab active" id="tab-theory" onclick="switchPanelSection('theory')">
+          <span class="tab-icon">📘</span> THEORY
+        </button>
+        <button class="panel-nav-tab" id="tab-practicals" onclick="switchPanelSection('practicals')">
+          <span class="tab-icon">📐</span> PRACTICAL
+        </button>
+        <button class="panel-nav-tab" id="tab-code" onclick="switchPanelSection('code')">
+          <span class="tab-icon">💻</span> CODE
+        </button>
+      </div>
+    </div>
+
+    <!-- Scrollable Panel Body -->
+    <div class="panel-scroll-body" id="panel-scroll-body">
+      <!-- Dynamic Content Loaded Here -->
+    </div>
+  </aside>
+
+  <!-- ABOUT US MODAL -->
+  <div class="reference-modal-backdrop" id="about-modal" onclick="closeModalOnBackdrop(event, 'about-modal')">
+    <div class="reference-modal-window">
+      <div class="reference-modal-header">
+        <h3>About This Study Portal</h3>
+        <button class="close-modal-x" onclick="closeReferenceModal('about-modal')">&times;</button>
+      </div>
+      <div class="reference-modal-body">
+        <p class="about-para">
+          This study portal is an academic platform created to prepare university students for the <strong>Programming &amp; Problem-Solving Using C (CAP6105)</strong> examination.
+        </p>
+        <p class="about-para">
+          Designed for rigorous, distraction-free study sessions, the website systematically organizes every unit of the syllabus into individual cards with instant access to <strong>Theory</strong>, <strong>Syllabus</strong>, and <strong>Practical / Programs</strong>.
+        </p>
+        <p class="about-para">
+          Every concept is paired with an accurate, technically verified answer formatted for rapid comprehension, formula verification, and robust examination readiness.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEVELOPER PROFILE MODAL -->
+  <div class="reference-modal-backdrop" id="dev-modal" onclick="closeModalOnBackdrop(event, 'dev-modal')">
+    <div class="reference-modal-window">
+      <div class="reference-modal-header">
+        <h3>Developer Profile</h3>
+        <button class="close-modal-x" onclick="closeReferenceModal('dev-modal')">&times;</button>
+      </div>
+      <div class="reference-modal-body">
+        <div class="developer-profile-wrapper">
+          <div class="dev-top-box">
+            <h4 class="dev-fullname">Hardik Nakum</h4>
+            <div class="dev-title-role">Data Analyst | Web Developer</div>
+          </div>
+          <p class="dev-intro-text">
+            I am an aspiring Data Analyst with a strong interest in transforming raw data into meaningful insights and building effective digital solutions. I focus on data analysis, data visualization, problem-solving, and developing user-friendly web applications. I aim to combine analytical thinking with technical skills to create practical, efficient, and data-driven solutions.
+          </p>
+          <div>
+            <div class="skills-header">Core Competencies</div>
+            <div class="skills-chip-row">
+              <span class="skill-badge-chip">Data Cleaning</span>
+              <span class="skill-badge-chip">Data Processing</span>
+              <span class="skill-badge-chip">Data Interpretation</span>
+              <span class="skill-badge-chip">Extracting Meaningful Insights</span>
+            </div>
+          </div>
+          <div class="dev-statement-box">
+            Interested in exploring data-driven technologies, developing analytical skills, and creating innovative projects that connect technology with real-world problem-solving.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PITCH-BLACK FOOTER -->
+  <footer class="reference-footer">
+    <div class="footer-action-links">
+      <a class="footer-link-btn" onclick="openReferenceModal('about-modal')">About Us</a>
+      <a class="footer-link-btn" onclick="openReferenceModal('dev-modal')">Developer</a>
+      <a class="footer-link-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top</a>
+    </div>
+    <p><strong>CAP6105: Programming &amp; Problem-Solving Using C</strong> &bull; University Examination Study Portal</p>
+    <p style="margin-top: 0.45rem; font-size: 0.78rem; color: #64748b;">Curated by Hardik Nakum &bull; 15 Units &bull; 695 Theory Q&amp;As &bull; 30 Practicals &bull; 65 VS Code Programs</p>
+  </footer>
+
+  <!-- Content Source Files -->
+  <script src="content_units_1_5.js"></script>
+  <script src="content_units_6_10.js"></script>
+  <script src="content_units_11_15.js"></script>
+  <script src="content_programs.js"></script>
+
+  <!-- Interactive Logic -->
+  <script>
+    // Combine all 15 units
+    const ALL_UNITS = [
+      ...UNITS_1_TO_5,
+      ...UNITS_6_TO_10,
+      ...UNITS_11_TO_15
+    ];
+
+    // Explicit Mapping of Programs to Syllabus Topics (1-to-15)
+    const TOPIC_PROGRAM_MAP = {
+      unit1: ["p10", "p11", "p16", "p17", "p19", "p21", "p50"], // Practical Algorithms: Largest of 3, Leap Year, Factorial, Fibonacci, Palindrome, Prime, Euclid GCD
+      unit2: ["p1", "p2", "p5", "p6", "p7", "p8"], // Keywords, Variables, Data Types, Arithmetic
+      unit3: ["p1", "p2", "p3", "p4"], // Fundamentals of C: Basic Structure, Swapping, Tokens
+      unit4: ["p4", "p8", "p9"], // Operators: Bitwise XOR Swap, Modulo, Even/Odd
+      unit5: ["p9", "p10", "p11", "p12", "p13", "p14", "p15", "p16", "p17", "p18", "p19", "p20", "p21", "p22", "p23", "p24"], // Control Constructs
+      unit6: ["p25", "p26", "p27", "p28", "p29", "p30", "p31", "p32", "p33", "p34", "p35", "p36"], // Arrays & Matrices
+      unit7: ["p5", "p7", "p8", "p26"], // Type Casting
+      unit8: ["p43", "p51"], // Storage Classes
+      unit9: ["p1", "p2", "p14", "p37"], // Formatted and Unformatted I/O Functions
+      unit10: ["p43", "p44", "p45", "p46", "p47", "p48", "p49", "p50"], // Functions & Recursion
+      unit11: ["p51", "p52", "p53", "p54"], // Pointers
+      unit12: ["p37", "p38", "p39", "p40", "p41", "p42"], // Strings
+      unit13: ["p55", "p56", "p57", "p58"], // Structure and Union
+      unit14: ["p59", "p60", "p61", "p62"], // Data Structure: Stack and Queue
+      unit15: ["p63", "p64", "p65"] // Dynamic Memory Allocation
+    };
+
+    // Side Panel State
+    let currentOpenUnitId = null;
+    let currentPanelSection = 'theory';
+    let currentPanelTheme = 'light'; // Default clean white background
+    const THEORY_CODE_SNIPPETS = {};
+
+    function initApp() {
+      renderAllUnitCards();
+      initPanelResizer();
+
+      const statTotalEl = document.getElementById("stat-total-qa");
+      if (statTotalEl) {
+        const total = ALL_UNITS.reduce((sum, u) => sum + (u.questions ? u.questions.length : 0), 0);
+        statTotalEl.textContent = total;
+      }
+
+      // Close panel on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSidePanel();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initApp);
+    } else {
+      initApp();
+    }
+
+    // ─── Resizable Navigation Panel (Requirement 1) ───
+    let isResizing = false;
+    let resizeStartX = 0;
+    let resizeStartWidth = 0;
+
+    function initPanelResizer() {
+      const resizer = document.getElementById("panel-resizer");
+      const panel = document.getElementById("unit-side-panel");
+      if (!resizer || !panel) return;
+
+      resizer.addEventListener("mousedown", (e) => {
+        isResizing = true;
+        resizeStartX = e.clientX;
+        resizeStartWidth = panel.offsetWidth;
+        resizer.classList.add("is-resizing");
+        document.body.style.cursor = "ew-resize";
+        document.body.style.userSelect = "none";
+        e.preventDefault();
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isResizing) return;
+        const deltaX = resizeStartX - e.clientX;
+        const newWidth = Math.min(Math.max(resizeStartWidth + deltaX, 380), window.innerWidth * 0.96);
+        panel.style.width = newWidth + "px";
+      });
+
+      document.addEventListener("mouseup", () => {
+        if (isResizing) {
+          isResizing = false;
+          resizer.classList.remove("is-resizing");
+          document.body.style.cursor = "";
+          document.body.style.userSelect = "";
+        }
+      });
+
+      // Touch events for mobile/tablet drag resizing
+      resizer.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 1) {
+          isResizing = true;
+          resizeStartX = e.touches[0].clientX;
+          resizeStartWidth = panel.offsetWidth;
+          resizer.classList.add("is-resizing");
+        }
+      }, { passive: true });
+
+      document.addEventListener("touchmove", (e) => {
+        if (!isResizing || e.touches.length !== 1) return;
+        const deltaX = resizeStartX - e.touches[0].clientX;
+        const newWidth = Math.min(Math.max(resizeStartWidth + deltaX, 320), window.innerWidth * 0.98);
+        panel.style.width = newWidth + "px";
+      }, { passive: true });
+
+      document.addEventListener("touchend", () => {
+        if (isResizing) {
+          isResizing = false;
+          resizer.classList.remove("is-resizing");
+        }
+      });
+    }
+
+    // ─── Render All Cards in 3-Column Grid ───
+    function renderAllUnitCards() {
+      const container = document.getElementById("units-container");
+      if (!container) return;
+      container.innerHTML = "";
+
+      // ─── Mid-Term Examination Paper Card (Placed Immediately Before Unit 1 - Requirement 4) ───
+      const midTermCard = document.createElement("div");
+      midTermCard.className = "unit-card";
+      midTermCard.id = "card-midterm";
+      midTermCard.innerHTML = `
+        <div class="unit-card-box" onclick="openMidTermSidePanel()">
+          <h2 class="unit-card-title">MID-TERM EXAMINATION PAPER</h2>
+        </div>
+      `;
+      container.appendChild(midTermCard);
+
+      // ─── All 15 Syllabus Unit Cards ───
+      ALL_UNITS.forEach((unit, idx) => {
+        const card = document.createElement("div");
+        card.className = "unit-card";
+        card.id = `card-${unit.id}`;
+
+        card.innerHTML = `
+          <!-- Card Box Face: ONLY Unit Name (Click to Open Side Panel) -->
+          <div class="unit-card-box" onclick="openUnitSidePanel('${unit.id}')">
+            <h2 class="unit-card-title">${escapeHtml(unit.title)}</h2>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // ─── Open Mid-Term Examination Paper in Side Panel ───
+    function openMidTermSidePanel() {
+      currentOpenUnitId = "midterm";
+      currentPanelSection = "midterm";
+
+      const panel = document.getElementById("unit-side-panel");
+      const overlay = document.getElementById("panel-overlay");
+      const tabsBar = panel ? panel.querySelector(".panel-nav-tabs") : null;
+      if (!panel) return;
+
+      // Highlight active card
+      document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));
+      const activeCard = document.getElementById("card-midterm");
+      if (activeCard) activeCard.classList.add("active-open");
+
+      // Set Title
+      const titleEl = document.getElementById("panel-unit-title");
+      if (titleEl) titleEl.textContent = "Mid-Term Examination Paper";
+
+      // Hide unit tabs bar for mid-term section
+      if (tabsBar) tabsBar.style.display = "none";
+
+      renderMidTermContent();
+
+      panel.classList.add("open");
+      if (overlay) overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function renderMidTermContent() {
+      const body = document.getElementById("panel-scroll-body");
+      if (!body) return;
+
+      body.innerHTML = `
+        <div class="midterm-container">
+          <div class="midterm-banner-box">
+            <div class="midterm-tag">University Examination Section</div>
+            <h3 class="midterm-heading">Mid-Term Question Paper &amp; Verified Solutions</h3>
+            <p class="midterm-desc">
+              Comprehensive step-by-step examination solutions, algorithm traces, flowchart logic, and verified C code.
+            </p>
+          </div>
+
+          <div class="midterm-waiting-box">
+            <div class="midterm-waiting-icon">📝</div>
+            <h4 class="midterm-waiting-title">Awaiting Question Paper</h4>
+            <p class="midterm-waiting-text">
+              This section is configured and ready. Please provide your mid-term examination question paper, and all questions will be solved accurately with step-by-step derivations, code, and verified answers.
+            </p>
+          </div>
+
+          <div class="midterm-sections-preview">
+            <div class="midterm-preview-card">
+              <h5>Section A</h5>
+              <p>Short-answer definitions, tokens, operators &amp; control flow fundamentals</p>
+            </div>
+            <div class="midterm-preview-card">
+              <h5>Section B</h5>
+              <p>Algorithm formulation, flowchart construction &amp; decision structures</p>
+            </div>
+            <div class="midterm-preview-card">
+              <h5>Section C</h5>
+              <p>Code dry runs, output prediction, loops, arrays &amp; functions</p>
+            </div>
+          </div>
+        </div>
+      `;
+      body.scrollTop = 0;
+    }
+
+    // ─── Open Unit in Side Panel ───
+    function openUnitSidePanel(unitId, section = 'theory') {
+      currentOpenUnitId = unitId;
+      currentPanelSection = section;
+
+      const panel = document.getElementById("unit-side-panel");
+      const overlay = document.getElementById("panel-overlay");
+      const tabsBar = panel ? panel.querySelector(".panel-nav-tabs") : null;
+      const unit = ALL_UNITS.find(u => u.id === unitId);
+      if (!panel || !unit) return;
+
+      if (tabsBar) tabsBar.style.display = "flex";
+
+      document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));
+      const activeCard = document.getElementById(`card-${unitId}`);
+      if (activeCard) activeCard.classList.add("active-open");
+
+      const titleEl = document.getElementById("panel-unit-title");
+      if (titleEl) titleEl.textContent = unit.title;
+
+      renderCurrentPanelContent();
+
+      panel.classList.add("open");
+      if (overlay) overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSidePanel() {
+      const panel = document.getElementById("unit-side-panel");
+      const overlay = document.getElementById("panel-overlay");
+      if (panel) panel.classList.remove("open");
+      if (overlay) overlay.classList.remove("open");
+
+      document.querySelectorAll(".unit-card").forEach(c => c.classList.remove("active-open"));
+      currentOpenUnitId = null;
+
+      document.body.style.overflow = "";
+    }
+
+    function switchPanelSection(section) {
+      currentPanelSection = section;
+      renderCurrentPanelContent();
+    }
+
+    function setPanelTheme(theme) {
+      currentPanelTheme = theme;
+      const panel = document.getElementById("unit-side-panel");
+      const btnLight = document.getElementById("btn-theme-light");
+      const btnDark = document.getElementById("btn-theme-dark");
+
+      if (panel) {
+        panel.classList.remove("theme-light", "theme-dark");
+        panel.classList.add(theme === "dark" ? "theme-dark" : "theme-light");
+      }
+
+      if (btnLight) btnLight.classList.toggle("active", theme === "light");
+      if (btnDark) btnDark.classList.toggle("active", theme === "dark");
+    }
+
+    function renderCurrentPanelContent() {
+      if (!currentOpenUnitId) return;
+      if (currentOpenUnitId === "midterm") {
+        renderMidTermContent();
+        return;
+      }
+
+      const unit = ALL_UNITS.find(u => u.id === currentOpenUnitId);
+      const body = document.getElementById("panel-scroll-body");
+      if (!unit || !body) return;
+
+      // Update tabs active state (Theory, Practical, Code - Requirement 2)
+      ['theory', 'practicals', 'code'].forEach(sec => {
+        const tabBtn = document.getElementById(`tab-${sec}`);
+        if (tabBtn) {
+          if (sec === currentPanelSection) tabBtn.classList.add("active");
+          else tabBtn.classList.remove("active");
+        }
+      });
+
+      if (currentPanelSection === "theory") {
+        renderTheoryView(body, unit);
+      } else if (currentPanelSection === "practicals") {
+        renderPracticalsView(body, unit);
+      } else if (currentPanelSection === "code") {
+        renderCodeView(body, unit);
+      }
+
+      body.scrollTop = 0;
+    }
+
+    // ─── Option 1: Theory View (Clean List, Direct Expansion) ───
+    function renderTheoryView(container, unit) {
+      let html = `<div class="qa-stack" id="qastack-${unit.id}">`;
+
+      unit.questions.forEach((item, qIdx) => {
+        const isOpen = qIdx === 0;
+        html += `
+          <div class="qa-card ${isOpen ? 'open' : ''}" id="qacard-${unit.id}-${qIdx}">
+            <button class="qa-btn" onclick="toggleQuestion('${unit.id}', ${qIdx})">
+              <div class="qa-left">
+                <span class="qa-num-badge">Q${qIdx + 1}.</span>
+                <span class="qa-text">${escapeHtml(item.q)}</span>
+              </div>
+              <span class="qa-arrow">&#9660;</span>
+            </button>
+            <div class="qa-answer-drawer">
+              <div class="qa-answer-box">
+                ${formatAnswer(item.a)}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    // Single Question Accordion Toggle
+    function toggleQuestion(unitId, qIdx) {
+      const card = document.getElementById(`qacard-${unitId}-${qIdx}`);
+      if (!card) return;
+      const isCurrentlyOpen = card.classList.contains("open");
+
+      const stack = document.getElementById(`qastack-${unitId}`);
+      if (stack) {
+        stack.querySelectorAll(".qa-card.open").forEach(c => c.classList.remove("open"));
+      }
+
+      if (!isCurrentlyOpen) {
+        card.classList.add("open");
+      }
+    }
+
+    // ─── Option 2: Practical Lab Exercises ───
+    function renderPracticalsView(container, unit) {
+      let html = `<div class="practicals-view">`;
+
+      if (unit.practicals && unit.practicals.length > 0) {
+        html += `
+          <div class="practicals-panel">
+            <h4><span>📐</span> University Practical Laboratory Exercises</h4>
+            <ol class="practicals-list">
+        `;
+        unit.practicals.forEach(p => {
+          html += `<li>${escapeHtml(p)}</li>`;
+        });
+        html += `</ol></div>`;
+      } else {
+        html += `
+          <div class="practicals-panel">
+            <h4><span>📐</span> Practical Exercises</h4>
+            <p style="color: var(--panel-text-muted); font-size: 0.9rem;">Practical exercises for this unit are integrated into the programming library.</p>
+          </div>
+        `;
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    // ─── Option 3: Visual Studio Code Programs View ───
+    function renderCodeView(container, unit) {
+      const progIds = TOPIC_PROGRAM_MAP[unit.id] || [];
+      const topicPrograms = progIds.map(id => PROGRAMS.find(p => p.id === id)).filter(Boolean);
+
+      let html = `<div class="practicals-view"><div class="prog-stack">`;
+
+      if (topicPrograms.length > 0) {
+        topicPrograms.forEach((prog, pIdx) => {
+          const highlighted = highlightC(prog.code);
+          const fileName = prog.title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') + '.c';
+
+          html += `
+            <div class="prog-card" id="prog-${prog.id}">
+              <button class="prog-header" onclick="toggleProgram('${prog.id}')">
+                <div class="prog-title-grp">
+                  <span class="prog-num-pill">P${pIdx + 1}</span>
+                  <span class="prog-name">${escapeHtml(prog.title)}</span>
+                  <span class="prog-cat-tag">${escapeHtml(prog.category)}</span>
+                </div>
+                <span class="prog-arrow">&#9660;</span>
+              </button>
+              <div class="prog-drawer">
+                <!-- Visual Studio Code Window -->
+                <div class="vscode-window">
+                  <div class="vscode-title-bar">
+                    <div class="vscode-tabs-left">
+                      <div class="vscode-dots">
+                        <span class="vscode-dot dot-red"></span>
+                        <span class="vscode-dot dot-yellow"></span>
+                        <span class="vscode-dot dot-green"></span>
+                      </div>
+                      <div class="vscode-tab">
+                        <span class="vscode-tab-icon">&#128196;</span>
+                        <span>${escapeHtml(fileName)}</span>
+                      </div>
+                    </div>
+                    <div class="vscode-actions-right">
+                      <span class="vscode-lang-pill">C / ANSI C99</span>
+                      <button class="btn-vscode-copy" onclick="copyProgramCode('${prog.id}', this)">
+                        <span>&#128203;</span> Copy Code
+                      </button>
+                    </div>
+                  </div>
+                  <div class="vscode-body">
+                    <div class="vscode-gutter">${highlighted.lineNumbers}</div>
+                    <pre class="vscode-code-content"><code>${highlighted.codeLines}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      } else {
+        html += `
+          <div class="practicals-panel">
+            <p style="color: var(--panel-text-muted); font-size: 0.9rem;">No standalone programs mapped to this unit.</p>
+          </div>
+        `;
+      }
+
+      html += `</div></div>`;
+      container.innerHTML = html;
+    }
+
+    function toggleProgram(progId) {
+      const card = document.getElementById(`prog-${progId}`);
+      if (card) card.classList.toggle("open");
+    }
+
+    function copyProgramCode(progId, btn) {
+      const prog = PROGRAMS.find(p => p.id === progId);
+      if (!prog) return;
+
+      navigator.clipboard.writeText(prog.code).then(() => {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<span>&#10003;</span> Copied!`;
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove("copied");
+        }, 2000);
+      }).catch(err => {
+        console.error("Copy failed", err);
+      });
+    }
+
+    // ─── Format Answer with Visual Studio Code Editor Windows (Requirement 3) ───
+    function formatAnswer(text) {
+      if (!text) return "";
+
+      // Extract fenced code blocks first so raw syntax, indentation, and special characters remain pristine
+      const codeBlocks = [];
+      let processed = text.replace(/```(?:[a-zA-Z0-9_-]+)?\r?\n?([\s\S]*?)```/g, (match, code) => {
+        const id = `___CODE_WRITEUP_${codeBlocks.length}___`;
+        codeBlocks.push(code.trim());
+        return id;
+      });
+
+      // Escape narrative text
+      processed = escapeHtml(processed);
+
+      // Bold formatting **text**
+      processed = processed.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+
+      // Format line breaks
+      processed = processed.replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
+
+      // Inline `code`
+      processed = processed.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+      // Re-inject clear code writeup with syntax highlighting, line numbers, and copy button
+      codeBlocks.forEach((code, idx) => {
+        const snippetId = `snippet_${idx}_` + Math.random().toString(36).substr(2, 6);
+        THEORY_CODE_SNIPPETS[snippetId] = code;
+        const highlighted = highlightC(code);
+
+        const writeupHtml = `
+          <div class="code-writeup">
+            <div class="code-writeup-bar">
+              <span class="code-writeup-badge">C Code</span>
+              <button class="code-writeup-copy" onclick="copyTheorySnippet('${snippetId}', this)">
+                <span>&#128203;</span> Copy
+              </button>
+            </div>
+            <div class="code-writeup-content">
+              <div class="code-writeup-gutter">${highlighted.lineNumbers}</div>
+              <pre class="code-writeup-pre"><code>${highlighted.codeLines}</code></pre>
+            </div>
+          </div>
+        `;
+
+        processed = processed.replace(`___CODE_WRITEUP_${idx}___`, writeupHtml);
+      });
+
+      return processed;
+    }
+
+    function copyTheorySnippet(snippetId, btn) {
+      const code = THEORY_CODE_SNIPPETS[snippetId];
+      if (!code) return;
+
+      navigator.clipboard.writeText(code).then(() => {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<span>&#10003;</span> Copied!`;
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove("copied");
+        }, 2000);
+      }).catch(err => {
+        console.error("Copy failed", err);
+      });
+    }
+
+    // High-Fidelity C Syntax Highlighter for VS Code Editor
+    function highlightC(code) {
+      if (!code) return { codeLines: "", lineNumbers: "", totalLines: 0 };
+      
+      let html = code
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      const tokens = [];
+      function saveToken(str, cls, italic = false) {
+        const id = '___TOK_' + tokens.length + '___';
+        tokens.push({ id, html: '<span style="color:' + cls + ';' + (italic ? 'font-style:italic;' : '') + '">' + str + '</span>' });
+        return id;
+      }
+
+      // 1. Comments
+      html = html.replace(/\/\*[\s\S]*?\*\//g, m => saveToken(m, '#6a9955', true));
+      html = html.replace(/\/\/[^\n]*/g, m => saveToken(m, '#6a9955', true));
+
+      // 2. Strings & Character literals
+      html = html.replace(/\"(?:\\.|[^\"\\])*\"/g, m => saveToken(m, '#ce9178'));
+      html = html.replace(/\'(?:\\.|[^\'\\])*\'/g, m => saveToken(m, '#ce9178'));
+
+      // 3. Preprocessor directives
+      html = html.replace(/(#[a-zA-Z_]+(?:\s+&lt;[^&gt;]+&gt;|\s+\"[^\"]+\")?)/g, m => saveToken(m, '#c586c0'));
+
+      // 4. Control keywords
+      html = html.replace(/\b(if|else|switch|case|default|break|continue|return|for|while|do|goto)\b/g, m => saveToken(m, '#c586c0'));
+
+      // 5. Types & storage classes
+      html = html.replace(/\b(int|char|float|double|void|short|long|unsigned|signed|const|static|extern|auto|register|sizeof|struct|union|enum|typedef|FILE|size_t)\b/g, m => saveToken(m, '#569cd6'));
+
+      // 6. Common functions
+      html = html.replace(/\b(printf|scanf|getchar|putchar|gets|puts|fgets|fputs|fopen|fclose|malloc|calloc|realloc|free|strlen|strcpy|strcat|strcmp|strncpy|strncat|strncmp|main|exit|sqrt|pow|abs)\b/g, m => saveToken(m, '#dcdcaa'));
+
+      // 7. Numbers
+      html = html.replace(/\b\d+(\.\d+)?f?\b/g, m => saveToken(m, '#b5cea8'));
+
+      // Restore tokens
+      for (let i = tokens.length - 1; i >= 0; i--) {
+        html = html.replace(tokens[i].id, tokens[i].html);
+      }
+
+      const lines = html.split('\n');
+      const lineNumbers = lines.map((_, i) => i + 1).join('\n');
+
+      return {
+        codeLines: lines.join('\n'),
+        lineNumbers: lineNumbers,
+        totalLines: lines.length
+      };
+    }
+
+    // Modal Control
+    function openReferenceModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add("open");
+    }
+
+    function closeReferenceModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove("open");
+    }
+
+    function closeModalOnBackdrop(event, modalId) {
+      if (event.target.classList.contains("reference-modal-backdrop")) {
+        closeReferenceModal(modalId);
+      }
+    }
+
+    // Escape HTML
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
