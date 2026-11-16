@@ -11,7 +11,7 @@
 ### ✍️ Solved Mid-Term Examination Paper (Continuous Handwritten Answer Script Format)
 | Authentic Ruled Handwritten Script | Clean Typed Examination Mode | Original Question Paper Photo (Enhanced Scan) |
 | :---: | :---: | :---: |
-| ![Handwritten Answer Script](screenshots/midterm_only_download_options.png) | ![Typed Mode](screenshots/midterm_typed_solved_paper.png) | ![Question Paper Photo Modal](screenshots/midterm_photo_modal_view.png) |
+| ![Handwritten Answer Script](screenshots/final_handwritten_tables_view.png) | ![Typed Mode](screenshots/final_textwritten_view.png) | ![Question Paper Photo Modal](screenshots/midterm_photo_modal_view.png) |
 
 ### 💻 Desktop Portal View
 | Dashboard & Unit Overview | Interactive Side Panel Reader |
@@ -37,13 +37,11 @@ The portal covers the entire university syllabus across **15 Units**, pairing th
 
 The Mid-Term Examination Paper is rendered in a **continuous handwritten examination answer script format** (college ruled paper, vertical red margin, blue ink typography, question tags, and unbroken flowing answers):
 
-- **📥 Multiple Solved Paper Download & Export Options**:
-  - **Download PDF (Print)**: One-click print / save as clean multi-page A4 PDF formatted with dedicated `@media print` rules.
-  - **Download Markdown (.md)**: Raw document download (`MIDTERM_EXAM_SOLUTIONS_RAW.md`).
-  - **Download Plain Text (.txt)**: Clean `.txt` export for offline notes or study tools.
-  - **Copy All to Clipboard**: Instant copy of the full 30-mark examination script.
-  - **Question Paper Photo**: View and download the cropped, background-removed, scanner-quality enhanced exam question paper photo.
-  - **Style Switcher**: Instant toggle between `✍️ Handwritten Paper` (default) and `🖨️ Typed Mode`.
+- **🎯 Dedicated 4-Option Toolbar**:
+  1. **📥 Download Paper**: Generates clean, printable multi-page A4 PDF of the complete solved examination script via `@media print`.
+  2. **✍️ Handwritten**: Authentic college ruled examination answer paper with vertical red margin, blue gel pen ink typography, question tags, and comparison tables.
+  3. **🖨️ Text Written**: Clean, modern typography mode for fast reading on any device.
+  4. **📷 Paper Photo**: Opens full-screen view of the original enhanced question paper scan.
 
 - **Complete Solved Sections (Not Separated - Flowing Continuous Script)**:
   - **SECTION A (8 Marks):**

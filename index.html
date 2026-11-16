@@ -1125,7 +1125,7 @@
       background: #f8fafc;
     }
 
-    /* ─── HANDWRITTEN EXAM ANSWER SCRIPT STYLING ─── */
+        /* ─── HANDWRITTEN EXAM ANSWER SCRIPT STYLING ─── */
     .handwritten-container {
       display: flex;
       flex-direction: column;
@@ -1146,11 +1146,10 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .handwritten-toolbar-left,
-    .handwritten-toolbar-right {
+    .handwritten-toolbar-left {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
 
@@ -1201,29 +1200,12 @@
       color: var(--ans-accent);
     }
 
-    .style-toggle-pill {
-      display: inline-flex;
-      border: 1px solid var(--panel-border);
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--btn-bg);
-    }
-
-    .style-toggle-btn {
-      border: none;
-      background: transparent;
-      color: var(--panel-text-muted);
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 0.35rem 0.7rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .style-toggle-btn.active {
-      background: var(--tab-active-bg);
-      color: var(--tab-active-text);
-      font-weight: 800;
+    .btn-paper-action.active {
+      background: #0284c7 !important;
+      color: #ffffff !important;
+      border-color: #0284c7 !important;
+      font-weight: 800 !important;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35) !important;
     }
 
     /* The Authentic Lined Exam Paper Sheet */
@@ -1233,53 +1215,28 @@
       border-radius: 8px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       transition: all 0.2s ease;
     }
 
-    /* Mode 1: Handwritten Ruled College Exam Paper */
-    
-    .paper-sheet.mode-handwritten .exam-table {
-      border: 2px solid #0f2c59;
-      background: rgba(255, 255, 255, 0.9);
-      margin: 1.25rem 0;
-      box-shadow: 0 2px 8px rgba(15, 44, 89, 0.08);
-    }
-    .paper-sheet.mode-handwritten .exam-table th {
-      background: #0f2c59;
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      padding: 0.65rem 0.85rem;
-    }
-    .paper-sheet.mode-handwritten .exam-table td {
-      color: #0f2c59;
-      font-size: 1.05rem;
-      line-height: 1.5;
-      border-bottom: 1px solid rgba(15, 44, 89, 0.2);
-      padding: 0.65rem 0.85rem;
-    }
-    .paper-sheet.mode-handwritten .code-writeup {
-      margin: 1.25rem 0;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-    }
-
-.paper-sheet.mode-handwritten {
+    /* Mode 1: Authentic Handwritten Ruled College Exam Paper */
+    .paper-sheet.mode-handwritten {
       font-family: 'Kalam', 'Caveat', cursive, sans-serif;
       font-size: 1.15rem;
       line-height: 34px;
       color: #0f2c59; /* Royal blue gel pen ink */
       background-color: #fcfbf8;
       background-image: 
-        linear-gradient(90deg, transparent 72px, #f43f5e 73px, #f43f5e 75px, transparent 76px),
+        linear-gradient(90deg, transparent 80px, #f43f5e 81px, #f43f5e 83px, transparent 84px),
         repeating-linear-gradient(transparent, transparent 33px, #cbd5e1 34px);
       background-size: 100% 100%, 100% 34px;
       background-position: 0 0, 0 10px;
-      padding: 2.2rem 2.5rem 4rem 6.2rem;
+      padding: 2.2rem 2.5rem 4rem 105px;
+      position: relative;
+      overflow: visible;
     }
 
-    /* Mode 2: Clean Typed University Paper */
+    /* Mode 2: Clean Typed / Text Written Mode */
     .paper-sheet.mode-typed {
       font-family: 'Inter', -apple-system, sans-serif;
       font-size: 0.94rem;
@@ -1287,36 +1244,35 @@
       color: var(--panel-text);
       background-color: var(--panel-bg);
       padding: 2.2rem 2.5rem 4rem 2.5rem;
+      overflow: visible;
     }
 
     @media (max-width: 640px) {
       .paper-sheet.mode-handwritten {
-        padding: 1.25rem 0.85rem 3rem 3.4rem;
-        font-size: 1.02rem;
-        line-height: 30px;
-        background-size: 100% 100%, 100% 30px;
-        background-image: 
-          linear-gradient(90deg, transparent 46px, #f43f5e 47px, #f43f5e 48px, transparent 49px),
-          repeating-linear-gradient(transparent, transparent 29px, #cbd5e1 30px);
+        padding: 1.25rem 0.85rem 3rem 1rem !important;
+        background-image: repeating-linear-gradient(transparent, transparent 29px, #cbd5e1 30px) !important;
       }
       .paper-sheet.mode-typed {
         padding: 1.25rem 1rem 3rem 1rem;
       }
     }
 
-    /* Answer Booklet Header Card */
+    /* Answer Booklet Header Card (Solid background prevents red line bleed) */
     .booklet-header {
       border: 2px solid #0f2c59;
-      border-radius: 6px;
-      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      padding: 1.15rem 1.4rem;
       margin-bottom: 2rem;
-      background: rgba(255, 255, 255, 0.88);
+      background: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      position: relative;
+      z-index: 2;
       text-align: center;
     }
 
     .mode-typed .booklet-header {
       border-color: var(--panel-border);
-      background: var(--card-bg);
+      background: var(--card-bg) !important;
     }
 
     .booklet-title {
@@ -1351,7 +1307,7 @@
       border-color: var(--panel-border);
     }
 
-    /* Section Separator */
+    /* Section Banner */
     .booklet-section-banner {
       border-bottom: 2px solid #0f2c59;
       margin: 2.25rem 0 1.25rem 0;
@@ -1368,8 +1324,8 @@
     }
 
     .booklet-section-banner h2 {
-      font-family: 'Montserrat', 'Kalam', cursive, sans-serif;
-      font-size: 1.18rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
       font-weight: 800;
       text-transform: uppercase;
       margin: 0;
@@ -1383,8 +1339,8 @@
 
     /* Individual Continuous Question & Answer Block */
     .booklet-qa-entry {
-      margin-bottom: 2.25rem;
-      padding-bottom: 1.75rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.85rem;
       border-bottom: 1px dashed rgba(15, 44, 89, 0.25);
       position: relative;
     }
@@ -1397,7 +1353,7 @@
       border-bottom: none;
     }
 
-    /* Question Header with Margin Label */
+    /* Question Header */
     .booklet-q-header {
       display: flex;
       align-items: baseline;
@@ -1406,27 +1362,47 @@
       flex-wrap: wrap;
     }
 
+    /* Margin Tag: Red Ink, positioned safely to the left of the 80px red margin line */
     .margin-q-tag {
-      font-family: 'Montserrat', 'Kalam', sans-serif;
-      font-size: 0.98rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
       font-weight: 900;
-      color: #f43f5e; /* Red ink margin */
+      color: #e11d48;
       background: transparent;
-      margin-left: -5rem;
-      width: 4.5rem;
-      text-align: right;
+      margin: 0;
+      position: absolute;
+      left: -95px;
+      width: 70px;
+      text-align: center;
+      top: 2px;
+      line-height: 1.4;
       display: inline-block;
+    }
+
+    .mode-typed .margin-q-tag {
+      position: static;
+      display: inline-block;
+      width: auto;
+      margin-right: 0.5rem;
+      background: rgba(2, 132, 199, 0.12);
+      color: #0284c7;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
     }
 
     @media (max-width: 640px) {
       .margin-q-tag {
-        margin-left: 0;
-        width: auto;
-        text-align: left;
-        background: #ffe4e6;
-        padding: 0.1rem 0.4rem;
-        border-radius: 4px;
-        font-size: 0.85rem;
+        position: static !important;
+        left: auto !important;
+        margin: 0 0.5rem 0 0 !important;
+        display: inline-block !important;
+        width: auto !important;
+        background: #ffe4e6 !important;
+        padding: 0.15rem 0.5rem !important;
+        border-radius: 4px !important;
+        font-size: 0.85rem !important;
+        text-align: left !important;
       }
     }
 
@@ -1468,6 +1444,51 @@
       font-size: 0.92rem;
       line-height: 1.7;
       color: var(--ans-text);
+    }
+
+    /* Examination Comparison Table Styling */
+    .paper-sheet.mode-handwritten .exam-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid #0f2c59;
+      background: #ffffff;
+      margin: 1.25rem 0;
+      box-shadow: 0 4px 14px rgba(15, 44, 89, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .paper-sheet.mode-handwritten .exam-table th {
+      background: #0f2c59;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid #0f2c59;
+    }
+
+    .paper-sheet.mode-handwritten .exam-table td {
+      color: #0f2c59;
+      font-family: 'Kalam', cursive, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      border: 1px solid rgba(15, 44, 89, 0.25);
+      padding: 0.65rem 0.85rem;
+    }
+
+    .paper-sheet.mode-handwritten .exam-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .paper-sheet.mode-handwritten .code-writeup {
+      margin: 1.25rem 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(15, 44, 89, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
     }
 
     /* Print Stylesheet for Browser PDF Export */
@@ -2400,7 +2421,8 @@
         display: none;
       }
     }
-  </style>
+  
+    </style>
 </head>
 <body>
 
@@ -2729,8 +2751,8 @@
     function setPaperStyleMode(mode) {
       currentPaperStyleMode = mode;
       const sheet = document.getElementById("midterm-paper-sheet");
-      const btnHandwritten = document.getElementById("style-toggle-handwritten");
-      const btnTyped = document.getElementById("style-toggle-typed");
+      const btnHandwritten = document.getElementById("btn-mode-handwritten");
+      const btnTyped = document.getElementById("btn-mode-typed");
       if (!sheet) return;
 
       if (mode === "handwritten") {
@@ -2848,15 +2870,18 @@
       // 1. Download & Action Toolbar
       html += `
         <div class="handwritten-toolbar">
-          <div class="handwritten-toolbar-left">
-            <button class="btn-download-primary" onclick="downloadSolvedPaperPDF()" title="Download complete solved paper as PDF">
-              <span>📥</span> Download Solved Paper (PDF)
+          <div class="handwritten-toolbar-left" style="display: flex; gap: 0.65rem; align-items: center; flex-wrap: wrap;">
+            <button class="btn-download-primary" onclick="downloadSolvedPaperPDF()" title="Download / Save complete solved paper as PDF">
+              <span>📥</span> Download Paper
             </button>
-            <button class="btn-paper-action" onclick="downloadSolvedPaperMD()" title="Download raw Markdown format file">
-              <span>📄</span> Download .md
+            <button id="btn-mode-handwritten" class="btn-paper-action ${currentPaperStyleMode === 'handwritten' ? 'active' : ''}" onclick="setPaperStyleMode('handwritten')" title="Switch to Handwritten Exam Paper style">
+              <span>✍️</span> Handwritten
             </button>
-            <button class="btn-paper-action" onclick="downloadSolvedPaperText()" title="Download plain text file">
-              <span>📝</span> Download .txt
+            <button id="btn-mode-typed" class="btn-paper-action ${currentPaperStyleMode === 'typed' ? 'active' : ''}" onclick="setPaperStyleMode('typed')" title="Switch to Clean Text Written / Typed style">
+              <span>🖨️</span> Text Written
+            </button>
+            <button class="btn-paper-action" onclick="openPhotoModal()" title="View cropped &amp; enhanced scan of original question paper">
+              <span>📷</span> Paper Photo
             </button>
           </div>
         </div>
@@ -2864,7 +2889,7 @@
 
       // 2. The Continuous Ruled Examination Answer Sheet
       html += `
-        <div id="midterm-paper-sheet" class="paper-sheet mode-handwritten">
+        <div id="midterm-paper-sheet" class="paper-sheet mode-${currentPaperStyleMode}">
           <!-- Answer Booklet Header Card -->
           <div class="booklet-header">
             <div class="booklet-title">🏛️ ${escapeHtml(info.institution)}</div>
@@ -3193,18 +3218,21 @@
         return id;
       });
 
-      // 2. Extract markdown tables so formatting and alignment are pristine
+            // 2. Extract markdown tables so formatting and alignment are pristine (FIXED MULTI-COLUMN REGEX)
       const tableBlocks = [];
-      processed = processed.replace(/(?:^|\n)((?:\|[^\n\r|]+\|(?:\r?\n)?)+)/g, (match, tableText) => {
+      processed = processed.replace(/(?:^|\n)(\|[^\n\r]+\|(?:\r?\n\|[^\n\r]+\|)+)/g, (match, tableText) => {
         const lines = tableText.trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
         if (lines.length >= 2 && lines[0].startsWith('|') && lines[1].includes('---')) {
           const headerCells = lines[0].split('|').slice(1, -1).map(c => c.trim());
           const rows = lines.slice(2).map(line => line.split('|').slice(1, -1).map(c => c.trim()));
 
           function formatCell(cell) {
-            let s = escapeHtml(cell);
+            let s = cell.trim();
+            s = s.replace(/<br\s*\/?>/gi, '___LINEBREAK___');
+            s = escapeHtml(s);
             s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
             s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+            s = s.replace(/___LINEBREAK___/g, '<br>');
             return s;
           }
 
